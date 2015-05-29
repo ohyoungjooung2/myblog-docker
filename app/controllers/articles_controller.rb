@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @article = current_user.articles.friendly.find(params[:id])
   end
 
   # GET /articles/new
@@ -20,7 +21,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    @article = current_user.articles.find(params[:id])
+    @article = current_user.articles.friendly.find(params[:id])
   end
 
   # POST /articles
@@ -57,7 +58,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    @article = current_user.articles.find(params[:id])
+    @article = current_user.articles.friendly.find(params[:id])
     @article.destroy
     respond_to do |format|
       format.html { redirect_to articles_url }
@@ -68,7 +69,7 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
