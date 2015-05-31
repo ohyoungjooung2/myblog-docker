@@ -38,6 +38,12 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Friendly_id
 gem 'friendly_id','~> 5.1.0'
 
+#tinymce
+gem 'tinymce-rails'
+# ckeditor
+#gem 'ckeditor'
+#mecury editor
+#gem 'mercury-rails', :git => 'https://github.com/jejacks0n/mercury.git'
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -126,7 +126,7 @@ a:hover {
   line-height: 21px;
   vertical-align: center;
   background-color: #F0F0F0;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
   margin-right: 10px;
 }
 
@@ -151,7 +151,7 @@ a:hover {
   font-size: 14px;
   width: 250px;
   padding: 2px;
-  border: 2px solid #ccc;
+  border: 1px solid #ccc;
 }
 
 #main form input[type=checkbox] {
@@ -161,6 +161,7 @@ a:hover {
 
 #main form textarea {
   height: 150px;
+  width: 600px;
 }
 
 #main form input[type=submit] {
@@ -194,13 +195,13 @@ a:hover {
 }
 
 #main form .fieldWithErrors label{
-  border: 2px solid red;
+  border: 1px solid red;
   margin-right: 0px;
 }
 
 #main form .fieldWithErrors input, #main form .fieldWithErrors  textarea{
   width: 250px;
-  border: 2px solid red;
+  border: 1px solid red;
 }
 
 #errorExplanation {

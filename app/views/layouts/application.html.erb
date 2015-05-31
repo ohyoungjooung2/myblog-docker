@@ -11,7 +11,7 @@
     <h1><%= link_to "Blog", root_path %></h1>
     <div id="user_bar">
       <% if logged_in? %>
-        <%= link_to "New Article", new_article_path %> |
+        <%= link_to "New Article", new_article_path, "data-no-turbolink" => true %> |
         <%= link_to "Edit Password", edit_user_path(current_user) %> |
         <%= link_to "Logout", logout_path %>
       <% else %>
@@ -26,7 +26,7 @@
   </div>
 
  <div id="footer">
-   A Simple blog built for practicing ruby on rails(this is great? maybe^^;)
+   <font size=3 color="blue">A Simple blog built for practicing ruby on rails(this is great? maybe^^;)</font>
  </div>
 
 </body>

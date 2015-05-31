@@ -34,8 +34,8 @@
     <%= f.text_field :excerpt, :size => 33 %>
   </div>
   <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body, :rows=>10,:cols => 100  %>
+    <%= f.text_area  :body, :class => "tinymce", :rows => 40, :cols => 120  %>
+   
   </div>
   <div class="field">
     <%= f.label :published_at %><br>
@@ -45,3 +45,4 @@
     <%= submit_or_cancel(f) %>
   </div>
 <% end %>
+

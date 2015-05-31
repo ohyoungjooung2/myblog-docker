@@ -11,7 +11,8 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @article = current_user.articles.friendly.find(params[:id])
+     #@article = current_user.articles.friendly.find(params[:id])
+     @article = Article.friendly.find(params[:id])
   end
 
   # GET /articles/new
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
-    @article = current_user.articles.find(params[:id])
+    @article = current_user.articles.friendly.find(params[:id])
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
