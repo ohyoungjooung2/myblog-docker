@@ -1,0 +1,43 @@
+
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, :size => 33 %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location, :size => 37 %>
+  </div>
+  <!--
+  <div class="field">
+    <%= f.label "Categories" %><br/>
+    <% Category.all.each do |category| %>
+      <%= check_box_tag 'article[category_ids][]', category.id,
+          @article.category_ids.include?(category.id), id: dom_id(category) %>
+      <%= label_tag dom_id(category), category.name, class: "check_box_label" %>
+    <% end %>
+  </div>
+  -->
+  <div class="field">
+    <%= f.label "Categories" %><br/>
+       <% @categories = Category.all %>
+       <%= select_tag 'article[category_ids][]',options_for_select(@categories.collect{ |u| [u.name,u.id]}) %> 
+  </div>
+
+  <div class="field">
+    <%= f.label :excerpt %><br>
+    <%= f.text_field :excerpt, :size => 33 %>
+  </div>
+  <div class="field">
+    <%= f.text_area  :body, :class => "tinymce"  %>
+   
+  </div>
+  <div class="field">
+    <%= f.label :published_at %><br>
+    <%= f.datetime_select :published_at %>
+  </div>
+  <div class="actions">
+    <!--<%= submit_or_cancel(f) %>-->
+    <%= button_to "submit", new_article_path, method: :post,data: { confirm: 'Are you sure?' }, remote: true %>
+  </div>
+
