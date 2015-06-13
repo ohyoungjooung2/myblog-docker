@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
                         :dependent => :nullify
    has_many :replies, :through => :articles, :source => :comments
 
+   #has_secure_password
+
    before_save :encrypt_new_password
 
    def self.authenticate(email,password)

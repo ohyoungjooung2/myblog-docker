@@ -40,6 +40,12 @@ gem 'friendly_id','~> 5.1.0'
 
 #tinymce
 gem 'tinymce-rails'
+
+#kaminari
+gem 'kaminari'
+
+#devise for authentication
+gem 'devise'
 # ckeditor
 #gem 'ckeditor'
 #mecury editor
