@@ -2,7 +2,7 @@
 This is small myblog based on "http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails".
 I suppose this book is great.
 
-I added some gems and implemented search(solr),pagination(kaminari), and etc.
+I added some gems and implemented search(solr),pagination(kaminari) and devise(user authentication)
 
 * Ruby version: 2.2.2
 
