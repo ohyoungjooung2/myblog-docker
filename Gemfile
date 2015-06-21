@@ -57,7 +57,7 @@ gem 'unicorn'
 
 # 
 gem 'capistrano', '~> 3.4.0'
-#gem 'rvm-capistrano'
+gem 'rvm-capistrano', group: :development
 
 # mercury-rails
 #gem 'mercury-rails'
