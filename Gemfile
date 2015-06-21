@@ -46,6 +46,25 @@ gem 'kaminari'
 
 #devise for authentication
 gem 'devise'
+
+# sunspot search 
+gem 'sunspot_rails'
+
+gem 'sunspot_solr'
+
+#unicorn
+gem 'unicorn'
+
+# 
+gem 'capistrano', '~> 3.4.0'
+#gem 'rvm-capistrano'
+
+# mercury-rails
+#gem 'mercury-rails'
+
+#aloha editor
+#gem 'aloha-rails-improved', require: 'aloha/rails'
+
 # ckeditor
 #gem 'ckeditor'
 #mecury editor

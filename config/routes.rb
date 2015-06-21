@@ -1,14 +1,26 @@
 Blog::Application.routes.draw do
+ 
+  devise_for :users, :skip => [:session]
+  as :user do
+    get '/lonin' => 'devise/sessions#new', :as => :new_user_session
+    post '/signin' => 'devise/sessions#create', :as => :user_session
+    delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  
+
   root :to => "articles#index"
   resources :articles do
      resources :comments
   end
 
-  resources :users
-  resource :session, :only => [:new, :create, :destroy]
-  get '/login' => "sessions#new", :as => "login"
-  get '/logout' => "sessions#destroy", :as => "logout"
-
+  #resources :users
+  #resource :session, :only => [:new, :create, :destroy]
+  #no devise
+  #get '/login' => "sessions#new", :as => "login"
+  
+  #no devise
+  #get '/logout' => "sessions#destroy", :as => "logout"
+ 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

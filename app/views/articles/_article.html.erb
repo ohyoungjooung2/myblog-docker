@@ -2,7 +2,7 @@
  <h3>
    <%= link_to article.title, article_path(article) %>
    <!--nbsp; html_safe <%= ("&nbsp;"*80).html_safe %> -->
-   <font size=1>(<%= article.categories[0].name %>)</font>
+   <!--<font size=1>(<%#= article.categories[0].name %>)</font>-->
    <% if article.owned_by? current_user %>
    <span class='actions'>
      <%= link_to "Edit", edit_article_path(article), "data-no-turbolink" => true %>
