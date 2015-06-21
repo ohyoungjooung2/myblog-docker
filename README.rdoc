@@ -1,28 +1,23 @@
-== README
+== README ==
+This is small myblog based on "http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails".
+I suppose this book is great.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I added some gems and implemented search(solr),pagination(kaminari), and etc.
 
-Things you may want to cover:
+* Ruby version: 2.2.2
 
-* Ruby version
+* Rails : 4.2.1
 
-* System dependencies
+* MySQL: | 5.6.19-0ubuntu0.14.04.1 |
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Deployment: Not yet documented. I kinda lazy.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+*Todo: bootstrap or other addition to prettify UI.
+
+
+*Purpose: To know rails and practice. To deploy rails app.
+
+License: I follow author's policy from source code from http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails
+
+Other than that, rest codes follows each gem's LICENSE.
