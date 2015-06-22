@@ -2,7 +2,8 @@
 This is small myblog based on "http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails".
 I suppose this book is great, especially active-record part.
 
-I added some gems and implemented search(solr),pagination(kaminari) and devise(user authentication)
+I added some gems and implemented search(solr),pagination(kaminari) and user authentication(devise).
+For editor, I used tinymce gem.
 
 * Ruby version: 2.2.2
 
@@ -10,9 +11,52 @@ I added some gems and implemented search(solr),pagination(kaminari) and devise(u
 
 * MySQL: | 5.6.19-0ubuntu0.14.04.1 |
 
-* Deployment: Not yet documented. I kinda lazy.
+* Deployment: 
+1. Using passenger and apache2.
+#We need root and rails account. Here is rails account is whatsup.
+#Env is ubuntu14.04 apache and mysql.
 
- whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
+
+whatsup@whatsup-To-be-filled-by-O-E-M ~/ror/blog $ apache2 -v
+Server version: Apache/2.4.7 (Ubuntu)
+Server built:   Mar 10 2015 13:05:59
+
+whatsup@hostname ~ $ mkdir rails_root
+whatsup@hostname ~ $ cd rails_root/
+
+
+whatsup@hostname ~/rails_root $ git clone https://github.com/ohyoungjooung2/myblog.git
+
+
+$mysql -u root -p
+#mysql> create database myblog_production;
+
+whatsup@hostname ~/rails_root/myblog $ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database myblog_production;
+
+mysql> mysql> GRANT ALL PRIVILEGES ON myblog_production.* to 'myblog'@'localhost' IDENTIFIED BY 'secret';
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+
+whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
 
 # MySQL.  Versions 4.1 and 5.0 are recommended.
 #
@@ -114,6 +158,8 @@ whatsup@hostname ~/rails_root/myblog $ vi solr/solr.xml
 whatsup@hostname ~/rails_root/myblog $ rake sunspot:solr:start RAILS_ENV="production"
 
 Successfully started Solr ...
+
+Go to url "http://myblog.oyj" then we should see MyBlog front page.
 
 
 *Todo: bootstrap or other addition to prettify UI.
