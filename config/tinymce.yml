@@ -1,10 +1,45 @@
+
 theme_advanced_toolbar_location: top
 theme_advanced_toolbar_align: left
 theme_advanced_statusbar_location: bottom
 theme_advanced_buttons3_add:
-  - tablecontrols
-  - fullscreen
-
+  - template
+theme_advanced_buttons2_add:
+theme_advanced_buttons1_add:
 plugins:
   - table
   - fullscreen
+  - image
+  - link
+  - link image
+  - visualblocks
+  - code
+  - autosave
+  - paste
+  - preview
+  - visualchars
+  - template
+  - emoticons 
+
+
+template_replace_values: {
+        username : "Jack Black",
+        staffid : "991234"
+    }
+
+templates : [
+        {
+                title : "Editor Details",
+                content: '<!-- This will not be inserted -->
+                          <pre class="js">
+                          </pre>
+                      ',
+                description : "Adds Editors Name and Staff ID"
+        }
+]
+
+autosave_interval: "5s"
+paste_data_images: true
+fontsize_formats: "5pt 6pt 7pt 8pt 10pt 12pt 14pt 18pt 24pt 36pt"
+skin : 'charcoal'
+toolbar: "emoticons | template | table | sizeselect | bold italic | fontselect |  fontsizeselect | tablecontrols | fullscreen |  link | image | emotions"

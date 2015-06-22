@@ -60,20 +60,13 @@ gem 'capistrano', '~> 3.4.0'
 gem 'rvm-capistrano', group: :development
 
 # mercury-rails
-#gem 'mercury-rails'
+gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 
-#aloha editor
-#gem 'aloha-rails-improved', require: 'aloha/rails'
 
 # ckeditor
 #gem 'ckeditor'
 #mecury editor
-#gem 'mercury-rails', :git => 'https://github.com/jejacks0n/mercury.git'
-# Use unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]

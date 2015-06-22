@@ -9,5 +9,5 @@
    <% end %>
    </span>
  </h3>
- <%= simple_format @article.body %>
+ <%=  raw(@article.body).html_safe %>
 <% end %>
