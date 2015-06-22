@@ -50,7 +50,7 @@ gem 'devise'
 # sunspot search 
 gem 'sunspot_rails'
 
-gem 'sunspot_solr'
+gem 'sunspot_solr', group: :production
 
 #unicorn
 gem 'unicorn'

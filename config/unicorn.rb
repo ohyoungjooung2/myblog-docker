@@ -1,7 +1,7 @@
-root = "/home/whatup/ror/blog/current"
+root = "/home/whatsup/ror/blog"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
-stderr_path "#{root}/log/unicorn.log"
+stderr_path "#{root}/log/unicorn_err.log"
 stdout_path "#{root}/log/unicorn.log"
 
 listen "/tmp/unicorn.blog.sock"
