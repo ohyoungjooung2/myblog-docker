@@ -1,7 +1,7 @@
 This is small myblog based on "http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails".
 I suppose this book is great, especially active-record part.
 
-I added and implemented search(solr),pagination(kaminari),url_rewrite(friendly_id) and user authentication(devise).
+I added and implemented search(solr),pagination(kaminari),url_rewrite(friendly_id) and user authentication(devise) and some bootstrap3 for UI.
 For editor, I used tinymce gem.
 
 * Ruby version: 2.2.2
@@ -14,79 +14,82 @@ For editor, I used tinymce gem.
 #We need root and rails account. Here is rails account is whatsup.
 #Env is ubuntu14.04 apache and mysql.
 
-whatsup@whatsup-To-be-filled-by-O-E-M ~/ror/blog $ apache2 -v
-Server version: Apache/2.4.7 (Ubuntu)
-Server built:   Mar 10 2015 13:05:59
+        whatsup@whatsup-To-be-filled-by-O-E-M ~/ror/blog $ apache2 -v
+        Server version: Apache/2.4.7 (Ubuntu)
+        Server built:   Mar 10 2015 13:05:59
+    
+    
+         root@ts2:~# apt-get install libmysqlclient-dev
+         root@ts2:~# sudo apt-get install nodejs
+         root@ts2:~# sudo apt-get install openjdk-7-jre-headless
+         root@ts2:~# apt-get install mysql-server-5.6
 
 
-root@ts2:~# apt-get install libmysqlclient-dev
-root@ts2:~# sudo apt-get install nodejs
-root@ts2:~# sudo apt-get install openjdk-7-jre-headless
-root@ts2:~# apt-get install mysql-server-5.6
-
-
-whatsup@hostname ~ $ mkdir rails_root
-whatsup@hostname ~ $ cd rails_root/
-
-
-whatsup@hostname ~/rails_root $ git clone https://github.com/ohyoungjooung2/myblog.git
-whatsup@hostname ~/rails_root $gem install bundle
-whatsup@hostname ~/rails_root $vagrant@ts2:~/rails_root/myblog$ bundle install
+       whatsup@hostname ~ $ mkdir rails_root
+       whatsup@hostname ~ $ cd rails_root/
+       
+       
+       whatsup@hostname ~/rails_root $ git clone https://github.com/ohyoungjooung2/myblog.git
+       whatsup@hostname ~/rails_root $gem install bundle
+       whatsup@hostname ~/rails_root $vagrant@ts2:~/rails_root/myblog$ bundle install
 
 #root or database user password edit.
 
-whatsup@hostname ~/rails_root/myblog $ mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 6
-Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
-Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-mysql> create database myblog_production;
-mysql> mysql> GRANT ALL PRIVILEGES ON myblog_production.* to 'myblog'@'localhost' IDENTIFIED BY 'secret';
-Query OK, 0 rows affected (0.00 sec)
-
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.00 sec)
-
-
+       whatsup@hostname ~/rails_root/myblog $ mysql -u root -p
+       Enter password: 
+       Welcome to the MySQL monitor.  Commands end with ; or \g.
+       Your MySQL connection id is 6
+       Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
+       Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+       Oracle is a registered trademark of Oracle Corporation and/or its
+       affiliates. Other names may be trademarks of their respective
+       owners.
+       Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+       mysql> create database myblog_production;
+       mysql> mysql> GRANT ALL PRIVILEGES ON myblog_production.* to 'myblog'@'localhost' IDENTIFIED BY 'secret';
+       Query OK, 0 rows affected (0.00 sec)
+       
+       Query OK, 0 rows affected (0.00 sec)
+       
+       mysql> FLUSH PRIVILEGES;
+       Query OK, 0 rows affected (0.00 sec)
+       
+       
 #precompile assets
-whatsup@hostname ~/rails_root/myblog rake assets:precompile RAILS_ENV="production"
+       whatsup@hostname ~/rails_root/myblog rake assets:precompile RAILS_ENV="production"
 
-whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
-# MySQL.  Versions 4.1 and 5.0 are recommended.
-#
-# Install the MYSQL driver
-#   gem install mysql2
-#
-# Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
-#
-# And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: myblog_production
-  pool: 5
-  username: myblog
-  password: secret
-  socket: /var/run/mysqld/mysqld.sock
+       whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
+       # MySQL.  Versions 4.1 and 5.0 are recommended.
+       #
+       # Install the MYSQL driver
+       #   gem install mysql2
+       #
+       # Ensure the MySQL gem is defined in your Gemfile
+       #   gem 'mysql2'
+       #
+       # And be sure to use new-style password hashing:
+       #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+       # Warning: The database defined as "test" will be erased and
+       # re-generated from your development database when you run "rake".
+       # Do not set this db to the same as development or production.
+       production:
+         adapter: mysql2
+         encoding: utf8
+         database: myblog_production
+         pool: 5
+         username: myblog
+         password: secret
+         socket: /var/run/mysqld/mysqld.sock
+       
+         whatsup@hostname ~/rails_root/myblog $ rake db:setup RAILS_ENV="production"
+       ---...other messages --
+       -- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree})
+          -> 0.4454s
+       -- initialize_schema_migrations_table()
+          -> 0.0048s
 
-whatsup@hostname ~/rails_root/myblog $ rake db:setup RAILS_ENV="production"
----...other messages --
--- add_index("users", ["reset_password_token"], {:name=>"index_users_on_reset_password_token", :unique=>true, :using=>:btree})
-   -> 0.4454s
--- initialize_schema_migrations_table()
-   -> 0.0048s
+
+
 #No error..
 
 
@@ -105,35 +108,35 @@ hostname sites-enabled # pwd
 
 #Domain name to /etc/hosts
 
-hostname sites-enabled # vi /etc/hosts
-127.0.0.1       localhost ror.com unicorn myblog.oyj
-
-hostname sites-enabled # vi 003-myblog.conf 
-<VirtualHost *:80>
-        ServerName myblog.oyj
-        RailsEnv production
-        #RailsEnv development
-
-        ServerAdmin webmaster@localhost
-        DocumentRoot /home/whatsup/rails_root/myblog/public
-
-        LoadModule passenger_module /home/whatsup/rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/gems/passenger-5.0.9/buildout/apache2/mod_passenger.so
-       <IfModule mod_passenger.c>
-          PassengerRoot /home/whatsup/rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/gems/passenger-5.0.9
-          PassengerDefaultRuby /home/whatsup/rubies/ruby-2.2.2/bin/ruby
-       </IfModule>
-
-        #LogLevel debug ssl:warn
-        LogLevel warn
-        #LogLevel debug 
-        ErrorLog ${APACHE_LOG_DIR}/error-myblog.log
-        CustomLog ${APACHE_LOG_DIR}/access-myblog.log combined
-       <Directory /home/whatsup/rails_root/myblog/public/>
-        AllowOverride all
-        Options -MultiViews
-        Require all granted
-       </Directory>
-</VirtualHost>
+        hostname sites-enabled # vi /etc/hosts
+        127.0.0.1       localhost ror.com unicorn myblog.oyj
+        
+        hostname sites-enabled # vi 003-myblog.conf 
+        <VirtualHost *:80>
+                ServerName myblog.oyj
+                RailsEnv production
+                #RailsEnv development
+        
+                ServerAdmin webmaster@localhost
+                DocumentRoot /home/whatsup/rails_root/myblog/public
+        
+                LoadModule passenger_module /home/whatsup/rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/gems/passenger-5.0.9/buildout/apache2/mod_passenger.so
+               <IfModule mod_passenger.c>
+                  PassengerRoot /home/whatsup/rubies/ruby-2.2.2/lib/ruby/gems/2.2.0/gems/passenger-5.0.9
+                  PassengerDefaultRuby /home/whatsup/rubies/ruby-2.2.2/bin/ruby
+              </IfModule>
+       
+               #LogLevel debug ssl:warn
+               LogLevel warn
+               #LogLevel debug 
+               ErrorLog ${APACHE_LOG_DIR}/error-myblog.log
+               CustomLog ${APACHE_LOG_DIR}/access-myblog.log combined
+              <Directory /home/whatsup/rails_root/myblog/public/>
+               AllowOverride all
+               Options -MultiViews
+               Require all granted
+              </Directory>
+       </VirtualHost>
 
 
 #Production solr edit.
@@ -358,59 +361,58 @@ esac
 
 
 #Nginx virtual host
-vagrant@ts2:~/rails_root/myblog$ sudo vi /etc/nginx/sites-available/default 
-
-upstream unicorn {
-   server unix:/tmp/unicorn.blog.sock fail_timeout=0;
-}
-
-server {
-        listen 80 default_server deferred;
-        #listen [::]:80 default_server ipv6only=on;
-
-        root /home/vagrant/rails_root/myblog/public;
-
-        # Make site accessible from http://localhost/
-        server_name server_ip_or_name; #We coluld we /etc/hosts file or domain server(for real production)
-
-        location ^~ /assets/  {
-                # First attempt to serve request as file, then
+        vagrant@ts2:~/rails_root/myblog$ sudo vi /etc/nginx/sites-available/default 
+        
+        upstream unicorn {
+           server unix:/tmp/unicorn.blog.sock fail_timeout=0;
+        }
+        
+        server {
+                listen 80 default_server deferred;
+                #listen [::]:80 default_server ipv6only=on;
+        
+                root /home/vagrant/rails_root/myblog/public;
+        
+                # Make site accessible from http://localhost/
+                server_name server_ip_or_name; #We coluld we /etc/hosts file or domain server(for real production)
+        
+                location ^~ /assets/  {
+                        # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 gzip_static on;
                 expires max;
                 add_header Cache-Control public;
                 # Uncomment to enable naxsi on this location
                 # include /etc/nginx/naxsi.rules
-        }
+                }
                 try_files $uri $uri/index.html $uri @unicorn;
 
-        location @unicorn {
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header Host $http_host;
-                proxy_redirect off;
-                proxy_pass http://unicorn;
-        }
+                location @unicorn {
+                   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                   proxy_set_header Host $http_host;
+                   proxy_redirect off;
+                   proxy_pass http://unicorn;
+                }
 
-        error_page 500 502 503 504 /500.html;
-        client_max_body_size 20M;
-        keepalive_timeout 10;
-
-}
-
-
-vagrant@ts2:~/rails_root/myblog$ mkdir -p tmp/pids
-vagrant@ts2:~/rails_root/myblog$ ./config/unicorn_init.sh start
-vagrant@ts2:~/rails_root/myblog$ rake sunspot:solr:start RAILS_ENV="production"
-Successfully started Solr ...
+                     error_page 500 502 503 504 /500.html;
+                     client_max_body_size 20M;
+                     keepalive_timeout 10;
+             
+             }
 
 
+        vagrant@ts2:~/rails_root/myblog$ mkdir -p tmp/pids
+        vagrant@ts2:~/rails_root/myblog$ ./config/unicorn_init.sh start
+        vagrant@ts2:~/rails_root/myblog$ rake sunspot:solr:start RAILS_ENV="production"
+        Successfully started Solr ...
+        
+        
+        
+        root@ts2:/home/vagrant/rails_root/myblog# service nginx restart
 
-root@ts2:/home/vagrant/rails_root/myblog# service nginx restart
 
 
-
-*Todo: bootstrap or other addition to prettify UI.
-
+*Todo: bootstrap and some jquery related things. I am not good at javascript. Somebody help me.
 
 *Purpose: To know rails and practice. To deploy rails app.
 
