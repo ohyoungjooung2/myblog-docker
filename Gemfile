@@ -43,6 +43,7 @@ gem 'tinymce-rails'
 
 #kaminari
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 #devise for authentication
 gem 'devise'
