@@ -4,8 +4,8 @@
    <font size=1><%= @article.published_at %></font>
    <% if @article.owned_by? current_user %>
    <span class='actions'>
-     <%= link_to "Edit", edit_article_path(@article), "data-no-turbolink" => true %>
-     <%= link_to "Delete", @article, :confirm => "Are you sure?", :method => :delete %>
+     <small><%= link_to "Edit", edit_article_path(@article), "data-no-turbolink" => true %></small>
+     <small><%= link_to "Delete", @article, :confirm => "Are you sure?", :method => :delete %></small>
    <% end %>
    </span>
  </h3>

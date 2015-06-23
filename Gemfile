@@ -59,8 +59,11 @@ gem 'unicorn'
 gem 'capistrano', '~> 3.4.0'
 gem 'rvm-capistrano', group: :development
 
+#bootstrap-sass
+gem 'bootstrap-sass', '~> 3.1.1'
+
 # mercury-rails
-gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+#gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
 
 
 # ckeditor

@@ -1,14 +1,15 @@
 <%= div_for article do %>
- <h3>
    <%= link_to article.title, article_path(article) %>
-   <!--nbsp; html_safe <%= ("&nbsp;"*80).html_safe %> -->
-   <!--<font size=1>(<%#= article.categories[0].name %>)</font>-->
+   <small><%= article.categories[0].name %></small>
    <% if article.owned_by? current_user %>
+   
    <span class='actions'>
-     <%= link_to "Edit", edit_article_path(article), "data-no-turbolink" => true %>
-     <%= link_to "Delete", article,  method: :delete, data: { confirm: 'Are you sure?' }  %>
+      <small><%= link_to "Edit", edit_article_path(article), "data-no-turbolink" => true %></small>
+      <small><%= link_to "Delete", article,  method: :delete, data: { confirm: 'Are you sure?' }  %></small>
    <% end %>
    </span>
- </h3>
+   <p class="small">
  <%= simple_format(truncate(strip_tags(article.body),escape: false, length: 300) { link_to "read more",article_path(article) } ) %>
+   </p>
+   <hr>
 <% end %>

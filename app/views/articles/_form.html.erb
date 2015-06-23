@@ -1,4 +1,5 @@
-<%= form_for(@article) do |f| %>
+
+<%=  form_for(@article) do |f|  %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -10,16 +11,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title, :size => 33 %>
+  <div class="form-group">
+   <div class="field">
+    <label for="titleField"><%= f.label :title %></label>
+    <%= f.text_field :title, :size => 33, :class=>'form-control' %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location, :size => 37 %>
+  
+  <div class="form-group">
+   <div class="field">
+     <label for="locationField"><%= f.label :location %></label>
+     <%= f.text_field :location, :size => 37, :class=>'form-control' %>
+   </div>
   </div>
-  <!--
+  <!-- checkbox using
   <div class="field">
     <%= f.label "Categories" %><br/>
     <% Category.all.each do |category| %>
@@ -29,27 +34,38 @@
     <% end %>
   </div>
   -->
-  <div class="field">
-    <%= f.label "Categories" %><br/>
-       <% @categories = Category.all %>
-       <%= select_tag 'article[category_ids][]',options_for_select(@categories.collect{ |u| [u.name,u.id]}) %> 
+  <div class="form-group">
+   <div class="field">
+     <%= f.label "Categories" %>
+        <% @categories = Category.all %>
+        <%= select_tag 'article[category_ids][]',options_for_select(@categories.collect{ |u| [u.name,u.id]}),:class=>"form-control" %> 
+   </div>
   </div>
-
-  <div class="field">
-    <%= f.label :excerpt %><br>
-    <%= f.text_field :excerpt, :size => 33 %>
+  
+  <div class="form-group">
+   <div class="field">
+     <label for="excerptField"><%= f.label :excerpt %></label>
+     <%= f.text_field :excerpt, :size => 33, :class=>'form-control' %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.text_area  :body, :class => "tinymce"  %>
-   
+  
+  <div class="form-group">
+   <div class="field">
+     <%= f.text_area  :body, :class => "tinymce", :rows=> 12  %>
+   </div>
   </div>
-  <div class="field">
-    <%= f.label :published_at %><br>
-    <%= f.datetime_select :published_at %>
+  
+  <div class="form-group">
+    <div class="field text-center">
+      <lable for="publishedatField"> <%= f.label :published_at %></label>
+      <%= f.datetime_select :published_at %>
+    </div>
   </div>
+  
+  <div class="form-group">
   <div class="actions">
-    <!--<%= submit_or_cancel(f) %>-->
-    <%= button_to "submit", new_article_path, method: :post,data: { confirm: 'Are you sure?' }, remote: true %>
+     <!--<%= submit_or_cancel(f) %>-->
+     <p class="text-center"> <%= button_to "submit", new_article_path, method: :post,data: { confirm: 'Are you sure?' }, remote: true,:class=>"btn-sm btn-info" %></p>
+   </div>
   </div>
 <% end %>
-
