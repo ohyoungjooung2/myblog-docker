@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
       end.results
       #@articles.member_class = Article
     else
-      @articles = Article.order(:published_at).page params[:page]
+      @articles = Article.order(published_at: :desc).page params[:page]
     end
       
   end

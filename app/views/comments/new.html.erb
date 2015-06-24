@@ -1,20 +1,29 @@
 <%= form_for([@article,@article.comments.new], remote: true) do |f| %>
+<div class="form-group">
  <div class="field">
    <%= f.label :name %><br/>
-   <%= f.text_field :name %>
+   <%= f.text_field :name,:class=>"form-control" %>
  </div>
+</div>
 
+<div class="form-group">
  <div class="field">
    <%= f.label :email %><br />
-   <%= f.text_field :email %>
+   <% if current_user %>
+   <%= f.text_field :email ,:class=>"form-control" ,value:current_user.email%>
+   <% else %>
+   <%= f.text_field :email,:class=>"form-control" %>
+   <% end %>
  </div>
-
+</div>
  <div class="field">
   <%= f.label :body %><br />
-  <%= f.text_area :body %>
+  <%= f.text_area :body, :rows=>"7",:cols=>"100",:class=>"form-control" %>
  </div>
 
  <div class="actions">
-  <%= f.submit 'Add' %>
+  <div class="text-center"> <%= f.submit 'Add',:class=>"btn-sm btn-info" %></div>
+  <%= link_to "hide", new_article_comment_path(@article,:format => :js), :remote => true, :id => 'new_comment_link' %>
+
  </div>
 <% end %>
