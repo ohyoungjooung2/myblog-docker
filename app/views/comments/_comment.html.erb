@@ -1,11 +1,12 @@
 <%= div_for comment do %>
- <h3>
+ <small>
    <%= comment.name %> &lt; <%= comment.email %>&gt; said:
    <% if current_user && comment.email == current_user.email %>
    <span class='actions'>
      <%= link_to 'Delete', [@article,comment], :confirm => 'Are you sure?', :method => :delete, :remote => true %>
    </span>
    <% end %>
- </h3>
+ </small>
  <%= comment.body %>
+ <hr>
 <% end %>
