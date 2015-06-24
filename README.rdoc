@@ -1,8 +1,10 @@
-This is small myblog based on "http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails".
-I suppose this book is great, especially active-record part.
+*Intro: Rails is very good for developing web application. I created this simple blog with help of ruby on rails community on worldwide. Thanks.
+
+*License: All source code follows each gem's LICENSE. Other than that, rest codes follows RUBY license.( https://www.ruby-lang.org/en/about/license.txt)
+
 
 I added and implemented search(solr),pagination(kaminari),url_rewrite(friendly_id) and user authentication(devise) and some bootstrap3 for UI.
-For editor, I used tinymce gem.
+For post editor, I used tinymce gem.
 
 * Ruby version: 2.2.2
 
