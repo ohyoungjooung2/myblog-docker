@@ -7,12 +7,16 @@ Blog::Application.routes.draw do
     delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   
+ 
 
   root :to => "articles#index"
   resources :articles do
+     #pretty url for kaminari pagination
+     get 'page/:page', :action => :index, :on => :collection
      resources :comments
-     member { post :mercury_update }
   end
+  
+  
 
   #resources :users
   #resource :session, :only => [:new, :create, :destroy]

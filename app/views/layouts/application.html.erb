@@ -25,7 +25,7 @@
 		    <ul class="nav navbar-nav">
             <%#= link_to "New Article", new_article_path(@article,:format=>:js), remote: true,:id=>'new_post_link', "data-no-turbolink" => true %> 
             <li><%= link_to "MyBlog", root_path %></li>
-            <li><%= link_to "New Article", new_article_path(@article), :id=>'new_post_link', "data-no-turbolink" => true %></li> 
+            <li><%= link_to "New Article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %></li> 
               <% if signed_in? %>
 
              <li><%= link_to "Edit Password", edit_user_registration_path(current_user) %> </li>
