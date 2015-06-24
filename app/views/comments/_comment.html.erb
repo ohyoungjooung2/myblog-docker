@@ -1,7 +1,7 @@
 <%= div_for comment do %>
  <h3>
    <%= comment.name %> &lt; <%= comment.email %>&gt; said:
-   <% if  comment.email == current_user.email %>
+   <% if current_user && comment.email == current_user.email %>
    <span class='actions'>
      <%= link_to 'Delete', [@article,comment], :confirm => 'Are you sure?', :method => :delete, :remote => true %>
    </span>
