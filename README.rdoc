@@ -1,9 +1,17 @@
 *Intro: Rails is very good for developing web application. I created this simple blog with help of ruby on rails community on worldwide. Thanks.
 
-*License: All source code follows each gem's LICENSE. Other than that, rest codes follows RUBY license.( https://www.ruby-lang.org/en/about/license.txt)
+*License: All source code follows each gem's LICENSE. Other than that, rest codes follows MIT license.http://mit-license.org/
 
+*Included software:
+ 1. solr
+ 2. friendly_id
+ 3. devise
+ 4. bootstrap
+ 5. kaminari
+ 6. rails(4.2.1)
 
-I added and implemented search(solr),pagination(kaminari),url_rewrite(friendly_id) and user authentication(devise) and some bootstrap3 for UI.
+ We can find in config/router.rb for each version
+
 For post editor, I used tinymce gem.
 
 * Ruby version: 2.2.2
@@ -13,6 +21,7 @@ For post editor, I used tinymce gem.
 * MySQL: | 5.6.19-0ubuntu0.14.04.1 |
 
 * Deployment: 
+#To use solr search engine, we first install java runtime environment such as openjdk,oracle java. IBM jdk is not tested.
 #We need root and rails account. Here is rails account is whatsup.
 #Env is ubuntu14.04 apache and mysql.
 
@@ -99,13 +108,13 @@ For post editor, I used tinymce gem.
 
 #Passenger install. May need root account.
 
-$ gem install passenger --version 4.0.8
-$ passenger-install-apache2-module
+       $ gem install passenger --version 4.0.8
+       $ passenger-install-apache2-module
 
 #Apache virtual host(root)
 
-hostname sites-enabled # pwd
-/etc/apache2/sites-enabled
+        hostname sites-enabled # pwd
+       /etc/apache2/sites-enabled
 
 
 #Domain name to /etc/hosts
@@ -143,224 +152,225 @@ hostname sites-enabled # pwd
 
 #Production solr edit.
 
-whatsup@hostname ~/rails_root/myblog $ vi solr/solr.xml 
-<?xml version="1.0" encoding="UTF-8" ?>
-<solr persistent="false">
-  <cores adminPath="/admin/cores" host="${host:}" hostPort="${jetty.port:}">
-    <core name="default"     instanceDir="." dataDir="default/data"/>
-    <core name="development" instanceDir="." dataDir="development/data"/>
-    <core name="production" instanceDir="." dataDir="production/data"/>
-    <core name="test"        instanceDir="." dataDir="test/data"/>
-  </cores>
-</solr>
-whatsup@hostname ~/rails_root/myblog $ rake sunspot:solr:start RAILS_ENV="production"
-Successfully started Solr ...
+       whatsup@hostname ~/rails_root/myblog $ vi solr/solr.xml 
+       <?xml version="1.0" encoding="UTF-8" ?>
+       <solr persistent="false">
+         <cores adminPath="/admin/cores" host="${host:}" hostPort="${jetty.port:}">
+           <core name="default"     instanceDir="." dataDir="default/data"/>
+           <core name="development" instanceDir="." dataDir="development/data"/>
+           <core name="production" instanceDir="." dataDir="production/data"/>
+           <core name="test"        instanceDir="." dataDir="test/data"/>
+         </cores>
+       </solr>
+       whatsup@hostname ~/rails_root/myblog $ rake sunspot:solr:start RAILS_ENV="production"
+       Successfully started Solr ...
 
 2. Nginx unicorn
-vagrant@ts2:~$ uname -a
-Linux ts2 3.13.0-24-generic $47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
-vagrant@ts2:~$ cat /etc/issue
-Ubuntu 14.04 LTS \n \l
-
-root@ts2:/home/vagrant# apt-get install nginx
-root@ts2:~# apt-get install libmysqlclient-dev
-root@ts2:~# sudo apt-get install nodejs
-root@ts2:~# sudo apt-get install openjdk-7-jre-headless
-root@ts2:~# apt-get install mysql-server-5.6
-
-#MYSQL SETUP
-whatsup@hostname ~/rails_root/myblog $ mysql -u root -p
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 6
-Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
-
-Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> create database myblog_production;
-
-mysql> mysql> GRANT ALL PRIVILEGES ON myblog_production.* to 'myblog'@'localhost' IDENTIFIED BY 'secret';
-Query OK, 0 rows affected (0.00 sec)
-
-Query OK, 0 rows affected (0.00 sec)
-
-mysql> FLUSH PRIVILEGES;
-Query OK, 0 rows affected (0.00 sec)
-
-
-
-
-whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
-
-# MySQL.  Versions 4.1 and 5.0 are recommended.
-#
-# Install the MYSQL driver
-#   gem install mysql2
-#
-# Ensure the MySQL gem is defined in your Gemfile
-#   gem 'mysql2'
-#
-# And be sure to use new-style password hashing:
-#   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  database: myblog_production
-  pool: 5
-  username: myblog
-  password: secret
-  socket: /var/run/mysqld/mysqld.sock
-
-
-
+        vagrant@ts2:~$ uname -a
+        Linux ts2 3.13.0-24-generic $47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+        vagrant@ts2:~$ cat /etc/issue
+        Ubuntu 14.04 LTS \n \l
+        
+        root@ts2:/home/vagrant# apt-get install nginx
+        root@ts2:~# apt-get install libmysqlclient-dev
+        root@ts2:~# sudo apt-get install nodejs
+        root@ts2:~# sudo apt-get install openjdk-7-jre-headless
+        root@ts2:~# apt-get install mysql-server-5.6
+        
+        #MYSQL SETUP
+        whatsup@hostname ~/rails_root/myblog $ mysql -u root -p
+        Enter password: 
+        Welcome to the MySQL monitor.  Commands end with ; or \g.
+        Your MySQL connection id is 6
+        Server version: 5.6.19-0ubuntu0.14.04.1 (Ubuntu)
+        
+        Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+        
+        Oracle is a registered trademark of Oracle Corporation and/or its
+        affiliates. Other names may be trademarks of their respective
+        owners.
+        
+        Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+        
+        mysql> create database myblog_production;
+        
+        mysql> mysql> GRANT ALL PRIVILEGES ON myblog_production.* to 'myblog'@'localhost' IDENTIFIED BY 'secret';
+        Query OK, 0 rows affected (0.00 sec)
+        
+        Query OK, 0 rows affected (0.00 sec)
+        
+        mysql> FLUSH PRIVILEGES;
+        Query OK, 0 rows affected (0.00 sec)
+        
+        
+        
+        
+        whatsup@hostname ~/rails_root/myblog $ vi config/database.yml 
+        
+                # MySQL.  Versions 4.1 and 5.0 are recommended.
+        #
+        # Install the MYSQL driver
+        #   gem install mysql2
+        #
+        # Ensure the MySQL gem is defined in your Gemfile
+        #   gem 'mysql2'
+        #
+        # And be sure to use new-style password hashing:
+        #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
+        
+        
+        # Warning: The database defined as "test" will be erased and
+        # re-generated from your development database when you run "rake".
+        # Do not set this db to the same as development or production.
+        
+        
+        production:
+          adapter: mysql2
+          encoding: utf8
+          database: myblog_production
+          pool: 5
+          username: myblog
+          password: secret
+          socket: /var/run/mysqld/mysqld.sock
+        
+        
+        
 #ruby upgrade on user directory only.
-vagrant@ts2:~$ ruby -v
-ruby 1.9.3p547 (2014-05-14 revision 45962) [x86_64-linux]
-vagrant@ts2:~$ 
-
+#We can use rvm but I used my script for no reason.
+         vagrant@ts2:~$ ruby -v
+         ruby 1.9.3p547 (2014-05-14 revision 45962) [x86_64-linux]
+         vagrant@ts2:~$ 
+         
 --ruby 2.2 install--
-vagrant@ts2:~$ wget -O ruby_install.sh https://gist.githubusercontent.com/ohyoungjooung2/c3ffd2184f4f0ce292ef/raw/0abd98b5e3f845e422ccccc535fcc989042ae6/gistfile1.txt
-
-vagrant@ts2:~$ bash ruby_install.sh 2.2.2
-
-vagrant@ts2:~$ ruby -v
-ruby 1.9.3p547 (2014-05-14 revision 45962) [x86_64-linux]
-vagrant@ts2:~$ source ~/.bashrc 
-vagrant@ts2:~$ ruby -v
-ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
-
-
-vagrant@ts2:~$ mkdir rails_root
-vagrant@ts2:~$ cd rails_root/
-vagrant@ts2:~/rails_root$ git clone https://github.com/ohyoungjooung2/myblog.git
-
-vagrant@ts2:~/rails_root/$cd myblog
-vagrant@ts2:~/rails_root/myblog$ gem install bundle
-vagrant@ts2:~/rails_root/myblog$ bundle install
-
-
-vagrant@ts2:~/rails_root/myblog$ vi config/unicorn.rb 
+       vagrant@ts2:~$ wget -O ruby_install.sh https://gist.githubusercontent.com/ohyoungjooung2/c3ffd2184f4f0ce292ef/raw/0abd98b5e3f845e422ccccc535fcc989042ae6/gistfile1.txt
+       
+       vagrant@ts2:~$ bash ruby_install.sh 2.2.2
+       
+       vagrant@ts2:~$ ruby -v
+       ruby 1.9.3p547 (2014-05-14 revision 45962) [x86_64-linux]
+       vagrant@ts2:~$ source ~/.bashrc 
+       vagrant@ts2:~$ ruby -v
+       ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux]
+       
+       
+       vagrant@ts2:~$ mkdir rails_root
+       vagrant@ts2:~$ cd rails_root/
+       vagrant@ts2:~/rails_root$ git clone https://github.com/ohyoungjooung2/myblog.git
+       
+       vagrant@ts2:~/rails_root/$cd myblog
+       vagrant@ts2:~/rails_root/myblog$ gem install bundle
+       vagrant@ts2:~/rails_root/myblog$ bundle install
+       
+       
+       vagrant@ts2:~/rails_root/myblog$ vi config/unicorn.rb 
 #From https://coderwall.com/p/yz8cha/deploying-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean 
-root = "/home/vagrant/rails_root/myblog"
-working_directory root
-pid "#{root}/tmp/pids/unicorn.pid"
-stderr_path "#{root}/log/unicorn_err.log"
-stdout_path "#{root}/log/unicorn.log"
-
-listen "/tmp/unicorn.blog.sock"
-
-worker_processes 2
-timeout 30
+        root = "/home/vagrant/rails_root/myblog"
+        working_directory root
+        pid "#{root}/tmp/pids/unicorn.pid"
+        stderr_path "#{root}/log/unicorn_err.log"
+        stdout_path "#{root}/log/unicorn.log"
+        
+        listen "/tmp/unicorn.blog.sock"
+        
+        worker_processes 2
+        timeout 30
 
 #Force the bundler gemfile environment variable to
 #reference the capistrano "current" symlink
-before_exec do |_|
-  ENV["BUNDLE_GEMFILE"] = File.join(root,'Gemfile')
-end
+        before_exec do |_|
+        ENV["BUNDLE_GEMFILE"] = File.join(root,'Gemfile')
+        end
 
 
 #Creating unicorn_init.sh file
-# From https://coderwall.com/p/yz8cha/deploying-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean 
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides:          unicorn
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Manage unicorn server
-# Description:       Start, stop, restart unicorn server for a specific application.
-### END INIT INFO
-set -e
+        # From https://coderwall.com/p/yz8cha/deploying-rails-app-using-nginx-unicorn-postgres-and-capistrano-to-digital-ocean 
+        #!/bin/sh
+        ### BEGIN INIT INFO
+        # Provides:          unicorn
+        # Required-Start:    $remote_fs $syslog
+        # Required-Stop:     $remote_fs $syslog
+        # Default-Start:     2 3 4 5
+        # Default-Stop:      0 1 6
+        # Short-Description: Manage unicorn server
+        # Description:       Start, stop, restart unicorn server for a specific application.
+        ### END INIT INFO
+        set -e
+        
+        # Feel free to change any of the following variables for your env.
+        TIMEOUT=${TIMEOUT-60}
+        APP_ROOT=/home/vagrant/rails_root/myblog
+        PID=$APP_ROOT/tmp/pids/unicorn.pid
+        CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
+        AS_USER=whatsup
+        set -u
+        
+        OLD_PIN="$PID.oldbin"
 
-# Feel free to change any of the following variables for your env.
-TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/home/vagrant/rails_root/myblog
-PID=$APP_ROOT/tmp/pids/unicorn.pid
-CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-AS_USER=whatsup
-set -u
-
-OLD_PIN="$PID.oldbin"
-
-sig() {
-   test -s "$PID" && kill -$1 `cat $PID`
-}
-
-oldsig(){
-   test -s $OLD_PIN && kill -$1 `cat $OLD_PIN`
-}
-
-run(){
-   if [ "$(id -un)" = "$AS_USER" ]; then
-    eval $1
-   else
-    su -c "$1" - $AS_USER
-   fi
-}
-
-case "$1" in
-start)
-   sig 0 && echo >&2 "Already running" && exit 0
-   run "$CMD"
+        sig() {
+           test -s "$PID" && kill -$1 `cat $PID`
+        }
+        
+        oldsig(){
+           test -s $OLD_PIN && kill -$1 `cat $OLD_PIN`
+        }
+        
+        run(){
+           if [ "$(id -un)" = "$AS_USER" ]; then
+            eval $1
+           else
+            su -c "$1" - $AS_USER
+           fi
+        }
+        
+        case "$1" in
+        start)
+           sig 0 && echo >&2 "Already running" && exit 0
+           run "$CMD"
+           ;;
+        stop)
+           sig QUIT && exit 0
+           echo >&2 "Not running"
+           ;;
+        force-stop)
+           sig TERM && exit 0
+           echo >&2 "Not running"
    ;;
-stop)
-   sig QUIT && exit 0
-   echo >&2 "Not running"
-   ;;
-force-stop)
-   sig TERM && exit 0
-   echo >&2 "Not running"
-   ;;
-
-restart|reload)
-  sig HUP && echo reloaded OK && exit 0
-  echo >&2 "Couldn't reload, starting '$CMD' Instead"
-  run "$CMD"
-  ;;
-
-upgrade)
-  if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
-  then
-    n=$TIMEOUT
-    while test -s $OLD_PIN && test $n -ge 0
-    do
-      printf '.' && sleep 1 && n=$(( $n -1 ))
-    done
-    echo
-
-  if test $n -lt 0 && test -s $OLD_PIN
-    then
-      echo >&2 "$OLD_PIN still exists after $TIMEOUT seconds"
-      exit 1
-    fi
-    exit 0
-  fi
-  echo >&2 "Couldn't upgrade, starting '$CMD' instead"
-  run "$CMD"
-  ;;
-reopen-logs)
-  sig USR1
-  ;;
-*)
-  echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
-  exit 1
-  ;;
-esac
-
+        
+        restart|reload)
+          sig HUP && echo reloaded OK && exit 0
+          echo >&2 "Couldn't reload, starting '$CMD' Instead"
+          run "$CMD"
+          ;;
+        
+        upgrade)
+          if sig USR2 && sleep 2 && sig 0 && oldsig QUIT
+          then
+            n=$TIMEOUT
+            while test -s $OLD_PIN && test $n -ge 0
+            do
+              printf '.' && sleep 1 && n=$(( $n -1 ))
+            done
+            echo
+        
+          if test $n -lt 0 && test -s $OLD_PIN
+            then
+              echo >&2 "$OLD_PIN still exists after $TIMEOUT seconds"
+              exit 1
+            fi
+            exit 0
+          fi
+          echo >&2 "Couldn't upgrade, starting '$CMD' instead"
+          run "$CMD"
+          ;;
+        reopen-logs)
+          sig USR1
+          ;;
+        *)
+          echo >&2 "Usage: $0 <start|stop|restart|upgrade|force-stop|reopen-logs>"
+          exit 1
+          ;;
+        esac
+        
 
 #Nginx virtual host
         vagrant@ts2:~/rails_root/myblog$ sudo vi /etc/nginx/sites-available/default 
@@ -417,9 +427,3 @@ esac
 *Todo: bootstrap and some jquery related things. I am not good at javascript. Somebody help me.
 
 *Purpose: To know rails and practice. To deploy rails app.
-
-License: I follow author's policy on source code from http://www.amazon.com/Beginning-Rails-Experts-Voice-Development/dp/1430260343/ref=sr_1_1?ie=UTF8&qid=1434886864&sr=8-1&keywords=beginning+rails
-
-Other than that, rests  follow each gem's LICENSE.
-
-My code follows ruby license.
