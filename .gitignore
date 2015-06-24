@@ -17,3 +17,6 @@
 
 #Ignore *.swp
 *.swp
+
+#Ignore solr directory
+/solr/*/*/*
