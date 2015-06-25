@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    if params[:search]
+   if params[:search] and !params[:search].blank?
       @articles = Article.search do
        fulltext params[:search]
        paginate(:page => (params[:page] or 1), :per_page => 3)
