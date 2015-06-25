@@ -1,7 +1,6 @@
 module Categories
   extend ActiveSupport::Concern
-
-  
+ 
  
    def ruby_programming
       categories_articles(1)

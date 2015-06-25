@@ -13,10 +13,27 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
+/log/*
 /tmp
 
 #Ignore *.swp
 *.swp
+*.fdt
+*.fnm
+*.fdx
+*.nvd
+*.nvm
+*.si
+*.del
+*.doc
+*.pos
+*.tim
+*.tip
+*.fdt
+*.lock
+*.tip
+*.tim
 
 #Ignore solr directory
-/solr/*/*/*
+/solr/development/data/index/*
+/solr/development/data/tlog/*
