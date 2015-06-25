@@ -17,37 +17,7 @@ class ArticlesController < ApplicationController
    
   end
   
-  def ruby_programming
-      articles=Article.all
-      @articles=Category.find(1).articles
-  end
-  
-  def linux
-      articles=Article.all
-      @articles=Category.find(2).articles
-  end
-
-  def travel
-      articles=Article.all
-      @articles=Category.find(3).articles
-  end
-
-  def music
-      articles=Article.all
-      @articles=Category.find(4).articles
-  end
-  
-  
-  
-  def movie
-      articles=Article.all
-      @articles=Category.find(5).articles
-  end
-  
-  def ballgame
-      articles=Article.all
-      @articles=Category.find(6).articles
-  end
+  include Categories
   
   # GET /articles/1
   # GET /articles/1.json
@@ -114,6 +84,14 @@ class ArticlesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def categories_articles(category_id)
+      articles=Article.all
+      @articles=Category.find(category_id).articles(published_at: :desc).page params[:page]
+      render template: "articles/shared/_index"
+
+    end
+    
+    
     def set_article
       @article = Article.friendly.find(params[:id])
     end
