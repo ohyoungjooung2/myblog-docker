@@ -1,23 +1,54 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :music,:ruby_programming,:linux,:travel,:movie,:ballgame]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    #@articles = Article.all
     if params[:search]
       @articles = Article.search do
        fulltext params[:search]
        paginate(:page => (params[:page] or 1), :per_page => 3)
       end.results
-      #@articles.member_class = Article
+    
     else
       @articles = Article.order(published_at: :desc).page params[:page]
     end
-      
+   
+  end
+  
+  def ruby_programming
+      articles=Article.all
+      @articles=Category.find(1).articles
+  end
+  
+  def linux
+      articles=Article.all
+      @articles=Category.find(2).articles
   end
 
+  def travel
+      articles=Article.all
+      @articles=Category.find(3).articles
+  end
+
+  def music
+      articles=Article.all
+      @articles=Category.find(4).articles
+  end
+  
+  
+  
+  def movie
+      articles=Article.all
+      @articles=Category.find(5).articles
+  end
+  
+  def ballgame
+      articles=Article.all
+      @articles=Category.find(6).articles
+  end
+  
   # GET /articles/1
   # GET /articles/1.json
   def show

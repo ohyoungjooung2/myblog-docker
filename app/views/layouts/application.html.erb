@@ -23,6 +23,7 @@
 		      
 		     </div>
 		     -->
+		     
 		    <div class="collapse navbar-collapse" id="collapsibleMenu">
 		    <ul class="nav navbar-nav">
             <%#= link_to "New Article", new_article_path(@article,:format=>:js), remote: true,:id=>'new_post_link', "data-no-turbolink" => true %> 
@@ -32,12 +33,16 @@
 
              <li><%= link_to "Edit Password", edit_user_registration_path(current_user) %> </li>
              <li><%= link_to "Logout(#{current_user.email})", destroy_user_session_path, method: :delete %></li>
-             <li><%= current_user.email %></li>
+             
              <% else %>
              <li><%= link_to "Login", new_user_session_path %></li>
              <li><%= link_to "Register", new_user_registration_path %> </li>
+              
         
             <% end %>
+                         <%= render 'layouts/category' %>
+
+            
             </ul>
                      
             

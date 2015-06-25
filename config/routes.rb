@@ -7,7 +7,15 @@ Blog::Application.routes.draw do
     delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
   
- 
+  #Categories
+  get '/linux' => 'articles#linux'
+  get '/movie' => 'articles#movie'
+  get '/music' => 'articles#music'
+  get '/ruby' => 'articles#ruby_programming'
+  get '/travel' => 'articles#travel'  
+  get '/ballgame' => 'articles#ballgame'
+
+
 
   root :to => "articles#index"
   resources :articles do
