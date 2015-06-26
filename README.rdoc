@@ -19,7 +19,7 @@
 
 * MySQL: | 5.6.19-0ubuntu0.14.04.1 |
 
-* Deployment: 
+--Deployment--: 
 #To use solr search engine, we first install java runtime environment such as openjdk,oracle java. IBM jdk is not tested.
 #We need root and rails account. Here is rails account is whatsup.
 #Env is ubuntu14.04 apache and mysql.
