@@ -1,19 +1,18 @@
-*Intro: Rails is very good for developing web application. I created this simple blog with help of ruby on rails community on worldwide. Thanks.
+*Intro: This is very simple blog by Ruby on rails(4.2.1)
 
 *License: All source code follows each gem's LICENSE. Other than that, rest codes follows MIT license.http://mit-license.org/
 
-*Included software:
+*Included ruby gems:
  1. solr
  2. friendly_id
  3. devise
  4. bootstrap
  5. kaminari
  6. rails(4.2.1)
+ 7. tinymce
+ 8. Each gem's version is included in Gemfile.
 
- We can find in config/router.rb for each version
-
-For post editor, I used tinymce gem.
-
+--Development environment--
 * Ruby version: 2.2.2
 
 * Rails : 4.2.1
