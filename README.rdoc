@@ -1,4 +1,4 @@
-*Intro: This is very simple blog by Ruby on rails(4.2.1)
+*Intro: This is very simple blog by Ruby on rails(4.2.1). Designed with bootstrap3(http:///getboostrap.com)
 
 *License: All source code follows each gem's LICENSE. Other than that, rest codes follows MIT license.http://mit-license.org/
 
