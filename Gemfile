@@ -63,13 +63,8 @@ gem 'rvm-capistrano', group: :development
 #bootstrap-sass
 gem 'bootstrap-sass', '~> 3.1.1'
 
-# mercury-rails
-#gem 'mercury-rails', git: 'https://github.com/jejacks0n/mercury.git'
+gem 'jquery-ace-rails'
 
-
-# ckeditor
-#gem 'ckeditor'
-#mecury editor
 
 
 # Use debugger

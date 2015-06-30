@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
    
   end
   
+  #using concern and include
   include Categories
   
   # GET /articles/1

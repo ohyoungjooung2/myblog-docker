@@ -18,12 +18,16 @@
 </div>
  <div class="field">
   <%= f.label :body %><br />
-  <%= f.text_area :body, :rows=>"7",:cols=>"100",:class=>"form-control" %>
+ 
+  <%= f.text_area :body,:rows=>"7",:cols=>"100",:class=>"form-control"%>
+  <%= render "comment_text" %>
+
  </div>
+
+ 
 
  <div class="actions">
   <div class="text-center"> <%= f.submit 'Add',:class=>"btn-sm btn-info" %></div>
-  <%= link_to "hide", new_article_comment_path(@article,:format => :js), :remote => true, :id => 'new_comment_link' %>
 
  </div>
 <% end %>

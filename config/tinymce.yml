@@ -35,7 +35,17 @@ templates : [
                           </pre>
                       ',
                 description : "Adds Editors Name and Staff ID"
-        }
+        },
+        
+         {      
+                title : "ace editor",
+                content: '
+                          
+                           <script>
+                           $this.ace({ theme: "twilight", lang: "ruby" })
+                         </script>',
+               description: "ace editor insert"
+         }
 ]
 
 autosave_interval: "5s"

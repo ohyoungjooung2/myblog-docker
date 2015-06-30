@@ -1,4 +1,11 @@
-<div id="articles">
+<% if @articles.count == 0 %>
+ <div class="alert text-center">No articles created.
+ 	<%= link_to "Create article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %>
+ </div>
+ 
+<% else %>
+<div id="article%>s">
   <%= render @articles %>
 </div>
 <div class="text-center"><%= paginate @articles,  :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm" %></div>
+<% end %>
