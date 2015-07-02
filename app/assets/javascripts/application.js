@@ -16,7 +16,3 @@
 //= require tinymce-jquery
 //= require_tree .
 //= require bootstrap
-//= require ace/ace
-//= require ace/theme-twilight
-//= require ace/mode-ruby
-//= require jquery-ace.min

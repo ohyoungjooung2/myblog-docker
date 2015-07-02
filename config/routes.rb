@@ -14,8 +14,10 @@ Blog::Application.routes.draw do
   #get '/Ruby Programming' => 'articles#ruby_programming'
   #get '/Travel' => 'articles#travel'
   #get '/Watching Ballgame' => 'articles#ballgame'
+  resources :categories do
+     get '/categories/:name/:id' => 'categories#show',as: :what
+  end
 
-  resources :categories
 
 
   root :to => "articles#index"
