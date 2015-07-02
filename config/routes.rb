@@ -1,20 +1,21 @@
 Blog::Application.routes.draw do
- 
+
   devise_for :users, :skip => [:session]
   as :user do
     get '/lonin' => 'devise/sessions#new', :as => :new_user_session
     post '/signin' => 'devise/sessions#create', :as => :user_session
     delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
   end
-  
-  #Categories
-  get '/linux' => 'articles#linux'
-  get '/movie' => 'articles#movie'
-  get '/music' => 'articles#music'
-  get '/ruby' => 'articles#ruby_programming'
-  get '/travel' => 'articles#travel'  
-  get '/ballgame' => 'articles#ballgame'
 
+  #Categories
+  #get '/Configuring linux servers' => 'articles#linux'
+  #get '/Movie' => 'articles#movie'
+  #get '/Music' => 'articles#music'
+  #get '/Ruby Programming' => 'articles#ruby_programming'
+  #get '/Travel' => 'articles#travel'
+  #get '/Watching Ballgame' => 'articles#ballgame'
+
+  resources :categories
 
 
   root :to => "articles#index"
@@ -22,18 +23,19 @@ Blog::Application.routes.draw do
      #pretty url for kaminari pagination
      get 'page/:page', :action => :index, :on => :collection
      resources :comments
+     #resources :categories
+
   end
-  
-  
+
 
   #resources :users
   #resource :session, :only => [:new, :create, :destroy]
   #no devise
   #get '/login' => "sessions#new", :as => "login"
-  
+
   #no devise
   #get '/logout' => "sessions#destroy", :as => "logout"
- 
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -75,7 +77,7 @@ Blog::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

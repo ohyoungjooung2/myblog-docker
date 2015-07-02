@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :music,:ruby_programming,:linux,:travel,:movie,:ballgame]
+  before_action :authenticate_user!, except: [:index, :show ]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -10,16 +10,15 @@ class ArticlesController < ApplicationController
        fulltext params[:search]
        paginate(:page => (params[:page] or 1), :per_page => 3)
       end.results
-    
+
     else
       @articles = Article.order(published_at: :desc).page params[:page]
     end
-   
+
   end
-  
+
   #using concern and include
-  include Categories
-  
+
   # GET /articles/1
   # GET /articles/1.json
   def show
@@ -30,7 +29,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-    
+
   end
 
   # GET /articles/1/edit
@@ -46,10 +45,10 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article }
-        format.js 
+        format.js
         format.json { head :ok }
         #format.json { render action: 'show', status: :created, location: @article }
-        
+
       else
         format.html { render action: 'new' }
         format.json { render json: @article.errors, status: :unprocessable_entity }
@@ -83,16 +82,18 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def categories_articles(category_id)
+    articles=Article.all
+    @articles=Category.find(category_id).articles(published_at: :desc).page params[:page]
+    render template: "articles/shared/_index"
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
-    def categories_articles(category_id)
-      articles=Article.all
-      @articles=Category.find(category_id).articles(published_at: :desc).page params[:page]
-      render template: "articles/shared/_index"
 
-    end
-    
-    
+
+
     def set_article
       @article = Article.friendly.find(params[:id])
     end
