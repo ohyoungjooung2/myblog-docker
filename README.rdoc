@@ -438,6 +438,12 @@
            #   Mayor.create(name: 'Emanuel', city: cities.first)
            #   Creating Ruby,Rails,Linux categories
            categories = Category.create([{name: 'Ruby',slug: 'Ruby-Programming'},{name: 'Rails',slug: 'Rails-Rocks?'},{name: 'Linux',slug: 'Linux-Rocks?'}])
+          
+           $user~/myblog/db$rake db:seed 
+
+
+#We can deploy using puppet. I created basic puppet modules for deploying this MyBlog. If you know how to manage puppet framework, refer to below link.
+           https://github.com/ohyoungjooung2/puppetmaster
         
 *Todo: Some jquery related things. I am not good at javascript. Somebody help me.
         
