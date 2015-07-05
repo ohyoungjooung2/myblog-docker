@@ -1,0 +1,20 @@
+<div id="categories">
+  <table>
+    <tr>
+      <th>Category_id</th>
+      <th>Category_name</th>
+      <th>Category_created</th>
+      <th>Category_updated</th>
+    </tr>
+
+
+  <% @categories.each do | category | %>
+
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td><%= category.created_at %></td>
+    <td><%= category.updated_at %></td>
+  </tr>
+  <% end %>
+</div>
