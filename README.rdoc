@@ -425,7 +425,20 @@
         root@ts2:/home/vagrant/rails_root/myblog# service nginx restart
 
 
+#Creating categories. We can craeate category by inserting categories table
+#Using seed.rb example
+           $user~/myblog/db$ vi seeds.rb 
 
-*Todo: bootstrap and some jquery related things. I am not good at javascript. Somebody help me.
-
+           # This file should contain all the record creation needed to seed the database with its default values.
+           # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+           #
+           # Examples:
+           #
+           #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+           #   Mayor.create(name: 'Emanuel', city: cities.first)
+           #   Creating Ruby,Rails,Linux categories
+           categories = Category.create([{name: 'Ruby',slug: 'Ruby-Programming'},{name: 'Rails',slug: 'Rails-Rocks?'},{name: 'Linux',slug: 'Linux-Rocks?'}])
+        
+*Todo: Some jquery related things. I am not good at javascript. Somebody help me.
+        
 *Purpose: To know rails and practice. To deploy rails app.
