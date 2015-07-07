@@ -18,7 +18,9 @@
   </tr>
   <% end %>
   </table>
+  <div class="text-center"> <%= button_to "New", new_category_path, method: :get,:class=>"btn-sm btn-info" %></div>
+
 
 <% else %>
-<h1 class="page-header">Only Admin user can see categories ids </h1>
+<div class="text-center warning"><h1 class="page-header ">Only Admin user can edit category </h1></div>
 <% end %>
