@@ -1,6 +1,6 @@
-<div id="categories">
-  <table>
-    <tr>
+<% if current_user.try(:admin?) %>
+  <table class="table table-bordered table-hover table-condensed">
+    <tr class="warning">
       <th>Category_id</th>
       <th>Category_name</th>
       <th>Category_created</th>
@@ -17,4 +17,8 @@
     <td><%= category.updated_at %></td>
   </tr>
   <% end %>
-</div>
+  </table>
+
+<% else %>
+<h1 class="page-header">Only Admin user can see categories ids </h1>
+<% end %>

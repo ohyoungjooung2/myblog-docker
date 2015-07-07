@@ -1,0 +1,37 @@
+
+<%=  form_for(@category) do |f|  %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% @category.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+   <div class="field">
+    <label for="titleField"><%= f.label :name %></label>
+    <%= f.text_field :name, :size => 33, :class=>'form-control' %>
+   </div>
+  </div>
+
+  <div class="form-group">
+   <div class="field">
+     <label for="titleField"><%= f.label :slug %></label>
+
+     <%= f.text_field :slug, :size => 33, :class=>'form-control' %>
+
+   </div>
+  </div>
+
+
+  <div class="form-group">
+  <div class="actions">
+     <!--<%= submit_or_cancel(f) %>-->
+     <p class="text-center"> <%= button_to "submit", categories_path, method: :post,data: { confirm: 'Are you sure?' }, remote: true,:class=>"btn-sm btn-info" %></p>
+   </div>
+  </div>
+<% end %>

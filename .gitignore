@@ -33,6 +33,7 @@
 *.lock
 *.tip
 *.tim
+*.pid
 
 #Ignore solr directory
 /solr/development/data/index/*

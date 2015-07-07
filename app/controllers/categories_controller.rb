@@ -1,10 +1,14 @@
 class CategoriesController < ApplicationController
-     before_action :authenticate_user!, except: [ :show]
-     before_action :set_category , only: [:show,:index]
+     before_action :authenticate_user!, except: [ :show ]
+     before_action :set_category , only: [:show]
 
 
      def index
-       @categories=Category.all
+       if current_user.try(:admin?)
+         @categories=Category.all
+
+
+       end
      end
 
      def show
@@ -13,7 +17,33 @@ class CategoriesController < ApplicationController
        render template: "articles/shared/_index"
      end
 
+     def new
+       if current_user.try(:admin?)
+        @category = Category.new
+      else
+       redirect_to(root_path)
+      end
 
+     end
+
+
+     def create
+       if current_user.try(:admin?)
+        @category = Category.new(category_params)
+         respond_to do |format|
+           if @category.save
+             format.html { redirect_to @category }
+             format.js
+             format.json { head :ok }
+             #format.json { render action: 'show', status: :created, location: @article }
+
+           else
+             format.html { render action: 'new' }
+             format.json { render json: @category.errors, status: :unprocessable_entity }
+          end
+         end
+       end
+     end
 
 
      private
