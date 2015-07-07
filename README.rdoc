@@ -442,7 +442,7 @@
            $user~/myblog/db$rake db:seed 
 
 #Admin user creation.
-           After install this blog, we can create admin user who will be able to create categories via web interface. First http://hostname/users/sing_up and register. Then, using rails console(of course mysql update also works), update that singed_up email rows 'set admin true'.
+After install this blog, we can create admin user who will be able to create categories via web interface. First http://hostname/users/sing_up and register. Then, using rails console(of course mysql update also works), update that singed_up email rows 'set admin true'.
 
            Example)
            rails4@puppetclient1:~/myblog/config$ rails console "production"
