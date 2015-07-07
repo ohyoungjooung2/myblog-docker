@@ -441,10 +441,23 @@
           
            $user~/myblog/db$rake db:seed 
 
+#Admin user creation.
+           After install this blog, we can create admin user who will be able to create categories via web interface. First http://hostname/users/sing_up and register. Then, using rails console(of course mysql update also works), update that singed_up email rows 'set admin true'.
+
+           Example)
+           rails4@puppetclient1:~/myblog/config$ rails console "production"
+
+           irb(main):001:0> User.create(email: 'wnapdlf05@gmail.com',password: 'secretpassword',admin: true)
+
+           Categories url is http://hostname/categories.With new button, we can create categories easily. 
+
 
 #We can deploy using puppet. I created basic puppet modules for deploying this MyBlog. If you know how to manage puppet framework, refer to below link.
            https://github.com/ohyoungjooung2/puppetmaster
         
 *Todo: Some jquery related things. I am not good at javascript. Somebody help me.
+
+
+
         
 *Purpose: To know rails and practice. To deploy rails app.
