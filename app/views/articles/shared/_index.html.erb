@@ -1,8 +1,12 @@
 <% if @articles.count == 0 %>
- <div class="alert text-center">No articles created.
- 	<%= link_to "Create article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %>
- </div>
- 
+<div class="container">
+  <div class="center jumbotron">
+    <div class="alert text-center"><%= vacant %>
+      	<%= link_to "Create article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %>
+    </div>
+  </div>
+</div>
+
 <% else %>
 <div id="article%>s">
   <%= render @articles %>

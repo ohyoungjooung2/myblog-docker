@@ -5,6 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-categories = Category.create([{name: 'Ruby',slug: 'Ruby-Programming'},{name: 'Rails',slug: 'Rails-Rocks?'},{name: 'Linux',slug: 'Linux-Rocks?'}])
+#categories = Category.create([{name: 'Ruby',slug: 'Ruby-Programming'},{name: 'Rails',slug: 'Rails-Rocks?'},{name: 'Linux',slug: 'Linux-Rocks?'},{name: 'Javascript',slug: 'Javascript?'}])
 #Admin user creation
 admin = User.create([{email: 'wnapdlf05@gmail.com',admin: true }])
