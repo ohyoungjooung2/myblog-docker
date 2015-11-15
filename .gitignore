@@ -16,6 +16,9 @@
 /log/*
 /tmp
 
+#Ignore public dir
+/public/assets/*
+
 #Ignore *.swp
 *.swp
 *.fdt
