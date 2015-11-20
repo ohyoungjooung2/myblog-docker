@@ -2,6 +2,7 @@ Blog::Application.routes.draw do
 
   devise_for :users, :skip => [:session]
   as :user do
+    get '/users' => 'users#index'
     get '/lonin' => 'devise/sessions#new', :as => :new_user_session
     post '/signin' => 'devise/sessions#create', :as => :user_session
     delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
