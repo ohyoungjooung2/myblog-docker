@@ -20,7 +20,8 @@ module ApplicationHelper
    if request.original_fullpath == "/"
       provide(:title,"Home")
    else
-      provide(:title,category_path.split("/").last)
+      provide(:title, request.original_fullpath().split("/").last)
+
    end
  end
 
