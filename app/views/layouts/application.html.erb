@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+  <title><%= yield(:title) %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -33,6 +33,7 @@
 
              <li><%= link_to "Edit Password", edit_user_registration_path(current_user) %> </li>
              <li><%= link_to "Logout(#{current_user.email})", destroy_user_session_path, method: :delete %></li>
+
                <% if admin? %>
                <li><%= link_to "Users", users_path %></li>
                <% end %>

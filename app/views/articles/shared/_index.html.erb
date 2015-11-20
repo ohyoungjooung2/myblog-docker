@@ -1,3 +1,6 @@
+<%= home_category_provide_title %> 
+
+
 <% if @articles.count == 0 %>
 <div class="container">
   <div class="center jumbotron">
@@ -8,7 +11,7 @@
 </div>
 
 <% else %>
-<div id="article%>s">
+<div id="articles">
   <%= render @articles %>
 </div>
 <div class="text-center"><%= paginate @articles,  :theme => 'twitter-bootstrap-3', :pagination_class => "pagination-sm" %></div>

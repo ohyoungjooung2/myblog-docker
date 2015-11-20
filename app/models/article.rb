@@ -25,7 +25,7 @@ class Article < ActiveRecord::Base
  scope :recent, lambda { published.where("articles.published_at > ?", 1.week.ago.to_date) }
  scope :where_title, lambda { |term| where("articles.title LIKE ?","%#{term}%") }
 
- 
+
 
  def long_title
      "#{title} - #{published_at}"
@@ -43,4 +43,6 @@ class Article < ActiveRecord::Base
    return false unless owner.is_a?(User)
    user == owner
  end
+
+ 
 end

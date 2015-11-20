@@ -12,4 +12,6 @@ class ApplicationController < ActionController::Base
   def category_name
       Category.all
   end
+
+   include ApplicationHelper  
 end

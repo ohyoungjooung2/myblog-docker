@@ -82,12 +82,9 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def categories_articles(category_id)
-    articles=Article.all
-    @articles=Category.find(category_id).articles(published_at: :desc).page params[:page]
-    render template: "articles/shared/_index"
 
-  end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -97,6 +94,8 @@ class ArticlesController < ApplicationController
     def set_article
       @article = Article.friendly.find(params[:id])
     end
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params

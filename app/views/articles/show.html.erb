@@ -1,8 +1,9 @@
+<% provide(:title,"#{@article.title}-#{@article.categories[0].name}") %>
 <div id="show">
 <%= render 'show' %>
 </div>
 <span class="glyphicon glyphicon-comment">Comments</span>
-<hr> 
+<hr>
 <div id="comments">
   <%= render @article.comments %>
 </div>

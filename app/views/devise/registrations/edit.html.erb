@@ -1,3 +1,4 @@
+<% provide(:title, "Edit User Information" )%>
 <div class="page-header">Edit <%= resource_name.to_s.humanize %></div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
@@ -40,4 +41,3 @@
 <div class="text-right"> <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, :class=>"btn-sm btn-warning" %></div>
 
   <div class="text-center"><%= button_to "Back", :back,:class=>"btn-sm btn-warning",method: :get %></div>
-
