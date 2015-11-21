@@ -6,6 +6,7 @@ Blog::Application.routes.draw do
     get '/lonin' => 'devise/sessions#new', :as => :new_user_session
     post '/signin' => 'devise/sessions#create', :as => :user_session
     delete '/signout' => 'devise/sessions#destroy', :as => :destroy_user_session
+    match 'users/:id' => 'users#destroy', :via => :delete, :as => :admin_destroy_user
   end
 
   #Categories
