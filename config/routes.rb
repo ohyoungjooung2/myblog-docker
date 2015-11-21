@@ -20,6 +20,8 @@ Blog::Application.routes.draw do
      #get '/categories/:name/:id' => 'categories#show',as: :what
   #end
   resources :categories
+    match 'categories/:id' => 'categories#destroy', :via => :delete, :as => :admin_destroy_category
+
 
 
   root :to => "articles#index"

@@ -6,6 +6,7 @@
       <th>Category_name</th>
       <th>Category_created</th>
       <th>Category_updated</th>
+      <th>Category Delete?</th>
     </tr>
 
 
@@ -16,6 +17,7 @@
     <td><%= category.name %></td>
     <td><%= category.created_at %></td>
     <td><%= category.updated_at %></td>
+    <td><%= link_to "delete", admin_destroy_category_path(category[:id]), method: :delete, data: {confirm: 'You sure?'} %></td>
   </tr>
   <% end %>
   </table>

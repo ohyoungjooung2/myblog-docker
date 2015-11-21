@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-     before_action :authenticate_user!, except: [ :show ]
+     before_action :authenticate_user!
      before_action :set_category , only: [:show]
 
 
@@ -45,6 +45,16 @@ class CategoriesController < ApplicationController
        end
      end
 
+     def destroy
+       if current_user.try(:admin?)
+         @category=Category.find(params[:id]).destroy
+          if @category.destroy
+           redirect_to Category
+           flash[:success] = "Category deleted"
+          end
+        end
+      end
+
 
      private
      def set_category
@@ -54,6 +64,7 @@ class CategoriesController < ApplicationController
      # Never trust parameters from the scary internet, only allow the white list through.
      def category_params
        params.require(:category).permit(:name,:created_at,:updated_at)
+
      end
 
 end

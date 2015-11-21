@@ -1,6 +1,6 @@
 module UsersHelper
   def admin?
-    current_user.admin?
+    current_user.try(:admin?)
   end
 
 end
