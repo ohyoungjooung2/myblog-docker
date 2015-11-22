@@ -42,3 +42,4 @@
 #Ignore solr directory
 /solr/development/data/index/*
 /solr/development/data/tlog/*
+/solr/development/*/*/*/*
