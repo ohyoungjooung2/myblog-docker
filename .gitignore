@@ -40,6 +40,7 @@
 *.gen
 
 #Ignore solr directory
+/solr/pids/*
 /solr/development/**
 /solr/development/data/index/*
 /solr/development/data/tlog/*
