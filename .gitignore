@@ -41,6 +41,7 @@
 
 #Ignore solr directory
 /solr/pids/**
+/solr/default/**
 /solr/development/**
 /solr/development/data/index/*
 /solr/development/data/tlog/*
