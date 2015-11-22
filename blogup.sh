@@ -12,9 +12,14 @@ check(){
 
 kill_solr(){
 SOLR_PID=$(ps -ef | grep solr | awk  '{print $2}' | head -1)
+  if [[ -e $SOLR_PID ]]
+  then
   kill -9 $SOLR_PID
   JOB="killing solr"
   check
+  else
+   echo "Solr is not running"
+  fi
 }
 
 start_solr(){

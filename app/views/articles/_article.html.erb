@@ -1,8 +1,15 @@
 <%= div_for article do %>
    <%= link_to article.title, article_path(article) %>
-   <small><%= article.categories[0].name %></small>
+   <small>
+     <%#When has_and_belongs_to_many %>
+     <%#= article.categories[0].name %>
+     <%#Below is category has many article %>
+     <% if article.category %>
+     <%= article.category.name %>
+     <% end %>
+   </small>
    <% if article.owned_by? current_user %>
-   
+
    <span class='actions'>
       <small><%= link_to "Edit", edit_article_path(article), "data-no-turbolink" => true %></small>
       <small><%= link_to "Delete", article,  method: :delete, data: { confirm: 'Are you sure?' }  %></small>

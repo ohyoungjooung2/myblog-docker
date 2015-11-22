@@ -1,4 +1,4 @@
-<% provide(:title,"#{@article.title}-#{@article.categories[0].name}") %>
+<% provide(:title,"#{@article.title}-#{@article.category.name}") %>
 <div id="show">
 <%= render 'show' %>
 </div>

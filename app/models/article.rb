@@ -3,7 +3,8 @@ class Article < ActiveRecord::Base
  friendly_id :title, use: [:slugged, :history]
  validates_presence_of :title, :body
  belongs_to :user
- has_and_belongs_to_many :categories
+ belongs_to :category
+ #has_and_belongs_to_many :categories
  has_many :comments
 
 
@@ -44,5 +45,5 @@ class Article < ActiveRecord::Base
    user == owner
  end
 
- 
+
 end

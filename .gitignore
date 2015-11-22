@@ -37,6 +37,7 @@
 *.tip
 *.tim
 *.pid
+*.gen
 
 #Ignore solr directory
 /solr/development/data/index/*
