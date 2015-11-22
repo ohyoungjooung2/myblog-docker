@@ -12,7 +12,7 @@ check(){
 
 kill_solr(){
 SOLR_PID=$(ps -ef | grep solr | awk  '{print $2}' | head -1)
-  if [[ -e $SOLR_PID ]]
+  if [[ $? == "0"  ]]
   then
   kill -9 $SOLR_PID
   JOB="killing solr"
@@ -20,8 +20,7 @@ SOLR_PID=$(ps -ef | grep solr | awk  '{print $2}' | head -1)
   else
    echo "Solr is not running"
   fi
-}
-
+} 
 start_solr(){
   rake sunspot:solr:start
   JOB="Staring solr gem search engine"
