@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #git test insert
-ADDR=$1
+echo "argument two is $2"
+ADDR=$2
 check(){
    RV=$?
    if  [[ $RV != "0" ]]
@@ -12,13 +13,6 @@ check(){
    fi
 }
 
-check_bind(){
-   if [ ! -e $1 ]
-   then
-     echo -e "\e[31m bind address(ex 127.0.0.1,ip_address) should be exists"
-     exit 1
-   fi
-}
 
 kill_solr(){
 SOLR_PID=$(ps -ef | grep solr | awk  '{print $2}' | head -1)
@@ -38,13 +32,12 @@ start_solr(){
 }
 
 start_rails_server(){
-   check_bind
-   if [[ $? == "0" ]]
-   then
-    rails s -b $ADDR
-   else
-    rails s
-   fi
+    if [[ -e $ADDR ]]
+    then
+      rails s -b $ADDR
+    else
+      rails s
+    fi
   JOB="STARTING RAILS DEVELOPMENT"
   check
 }
