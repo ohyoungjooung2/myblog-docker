@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#git test insert
 check(){
    RV=$?
    if  [[ $RV != "0" ]]
