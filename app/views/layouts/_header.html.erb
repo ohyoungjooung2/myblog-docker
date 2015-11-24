@@ -1,0 +1,26 @@
+<div class="navbar navbar-inverse navbar-static-top" id="header">
+<!--div class="navbar navbar-static-top" id="header"> -->
+
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="collapsibleMenu">
+        <ul class="nav navbar-nav">
+          <%#= link_to "New Article", new_article_path(@article,:format=>:js), remote: true,:id=>'new_post_link', "data-no-turbolink" => true %>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "New Article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %></li>
+          <% if signed_in? %>
+           <li><%= link_to "Edit", edit_user_registration_path(current_user) %> </li>
+           <li><%= link_to "Logout(#{current_user.email})", destroy_user_session_path, method: :delete %></li>
+           <% if admin? %>
+             <li><%= link_to "Users", users_path %></li>
+           <% end %>
+          <% else %>
+           <li><%= link_to "Login", new_user_session_path %></li>
+           <li><%= link_to "Register", new_user_registration_path %> </li>
+          <% end %>
+          <!-- rendering category -->
+          <%= render 'layouts/category' %>
+        </ul>
+          <%= render 'layouts/search' %>
+       </div>
+     </div>
+   </div>

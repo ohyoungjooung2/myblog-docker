@@ -13,13 +13,19 @@
  */
 @import "bootstrap";
 
-body {        
-  padding-top: 60px;
+body {
+  /* padding-top: 60px; */
   /* The html and  body elements cannot have any padding or margin. */
-  .navbar-inverse { 
-    background-color:#302217;
+  .navbar-inverse {
+    /*background-color:#302217;*/
    }
-  
+
+   /*
+   .navbar {
+     background-color: #fff;
+   }
+   */
+
   .jumbotron {
        width:97%;
    }
@@ -60,17 +66,37 @@ p {
   line-height: 1.7em;
 }
 
-#header { 
-  height: 50px; 
+#header {
+  height: 50px;
   width: 100%;
   }
 
 /* Set the fixed height of the footer here */
-        
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
 
-#footer {  
-  height: 50px;
-  background-color: #302217;
-  a { color: #777;}
-        
+footer a {
+  color: #555;
+}
+
+footer a:hover {
+  color: #222;
+}
+
+footer muted credit {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
 }
