@@ -8,103 +8,43 @@
 </head>
 <body>
 
-
-	<div class="container">
-      <div class="navbar navbar-inverse navbar-static-top ">
-    	 <div id="header">
-
-        	<div class="container-fluid">
-      		 <!--<div class="navbar-header pull-right">
-      	       <button	type="button"	class="navbar-toggle collapsed"	data-toggle="collapse"	data-target="#collapsibleMenu">
-								<span	class="icon-bar"></span>
-								<span	class="icon-bar"></span>
-								<span	class="icon-bar"></span>
-			   </button>
-
-		     </div>
-		     -->
-
-		    <div class="collapse navbar-collapse" id="collapsibleMenu">
-		    <ul class="nav navbar-nav">
+  <div class="navbar navbar-inverse navbar-static-top" id="header">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="collapsibleMenu">
+          <ul class="nav navbar-nav">
             <%#= link_to "New Article", new_article_path(@article,:format=>:js), remote: true,:id=>'new_post_link', "data-no-turbolink" => true %>
             <li><%= link_to "MyBlog", root_path %></li>
             <li><%= link_to "New Article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %></li>
-              <% if signed_in? %>
-
+            <% if signed_in? %>
              <li><%= link_to "Edit", edit_user_registration_path(current_user) %> </li>
              <li><%= link_to "Logout(#{current_user.email})", destroy_user_session_path, method: :delete %></li>
-
-               <% if admin? %>
+             <% if admin? %>
                <li><%= link_to "Users", users_path %></li>
-               <% end %>
-
-             <% else %>
+             <% end %>
+            <% else %>
              <li><%= link_to "Login", new_user_session_path %></li>
              <li><%= link_to "Register", new_user_registration_path %> </li>
-
-
             <% end %>
-                         <%= render 'layouts/category' %>
-
-
-            </ul>
-
-            <!--glyphicon glyphicon-search-->
-            <form class="navbar-form navbar-right" role="search" action="/articles" accept-charset="UTF-8" method="get", validate="true">
-             <div class="form-group has-feedback">
-            	<input name="utf8" type="hidden" />
- 		        <input type="text" class="form-control" placeholder="search" name="search" id="search">
- 		        <i class="glyphicon glyphicon-search form-control-feedback"></i>
-
- 		     </div>
-            </form>
-
-          </div>
+            <!-- rendering category -->
+            <%= render 'layouts/category' %>
+          </ul>
+            <%= render 'layouts/search' %>
+         </div>
        </div>
-      </div>
      </div>
 
- <!--<div id="header">
- 	<%= form_tag articles_path, :method =>'get' do %>
- 	<p>
- 		<%= text_field_tag :search, params[:search] %>
- 		<%= submit_tag "Search", :name => nil %>
- 	</p>
- 	<% end %>
-
-    <div id="user_bar">
-      <% if signed_in? %>
-        <%#= link_to "New Article", new_article_path(@article,:format=>:js), remote: true,:id=>'new_post_link', "data-no-turbolink" => true %> |
-        <%= link_to "New Article", new_article_path(@article), :id=>'new_post_link', "data-no-turbolink" => true %> |
-
-        <%= link_to "Edit Password", edit_user_registration_path(current_user) %> |
-        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-        <%= session[:user_id] %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path %>
-        <%= link_to "Register", new_user_registration_path %>
-
-      <% end %>
-    </div>
-  </div>
-   -->
 
 
 
-  <div id="main">
+  <div class="container"  id="main">
     <%= content_tag(:p, notice, :class => 'notice') if notice.present? %>
     <%= content_tag(:p, alert, :class => 'alert') if alert.present? %>
     <%= yield %>
   </div>
 
 
- <div id="footer">
-
-   <div class="container">
+  <div id="footer">
    <p class="muted credit text-center"><%= link_to 'A Simple blog by ruby on rails 4.2.1',root_path %></p>
-   </div>
- </div>
-
-</div>
+  </div>
 </body>
 </html>

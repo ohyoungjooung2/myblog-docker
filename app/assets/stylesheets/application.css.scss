@@ -11,52 +11,66 @@
  *= require_self
  *= require_tree .
  */
-body {        height: 100%;
+@import "bootstrap";
+
+body {        
+  padding-top: 60px;
   /* The html and  body elements cannot have any padding or margin. */
-  .navbar-inverse{ background-color:#302217;
-    border-color: white;
-    }
-    .jumbotron {
+  .navbar-inverse { 
+    background-color:#302217;
+   }
+  
+  .jumbotron {
        width:97%;
-       height:300px;
-       }
+   }
+
+
+  .center {
+    text-align: center;
+  }
+
+
  }
 
- #header { height: 30px; }
 
- /* Wrapper for page content to push down footer */
- #wrap { min-height: 100%;
-         height: auto !important; height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;      }
-        /* Set the fixed height of the footer here */
-        #push,      #footer { height: 50px; }
-        #footer {  background-color: #302217;
-             a { color: #777;}
-             a:hover {color:#fff;} }
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-          #footer {
-                    margin-left: -20px;
-                    margin-right: -20px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                   }
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
 }
-/* Custom page CSS      -------------------------------------------------- */
-/* Not required for template or sticky footer method. */
-#wrap > .container {        padding-top: 60px;      }
-.container .credit {        margin: 20px 0;      }
-code {        font-size: 80%;      }
 
-.users {
-  list-style: none;
-  margin: 0;
-  align: center;
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
-  li {
-     overflow: auto;
-     padding: 10px 0;
-     border-bottom: 1px solid;
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+#header { 
+  height: 50px; 
+  width: 100%;
   }
+
+/* Set the fixed height of the footer here */
+        
+
+#footer {  
+  height: 50px;
+  background-color: #302217;
+  a { color: #777;}
+        
 }
