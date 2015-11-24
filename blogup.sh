@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 #git test insert
+ADDR=$1
 check(){
    RV=$?
    if  [[ $RV != "0" ]]
@@ -8,6 +9,14 @@ check(){
        exit $RV
    else
        echo -e "\e[34m $JOB successful"
+   fi
+}
+
+check_bind(){
+   if [ ! -e $1 ]
+   then
+     echo -e "\e[31m bind address(ex 127.0.0.1,ip_address) should be exists"
+     exit 1
    fi
 }
 
@@ -29,7 +38,13 @@ start_solr(){
 }
 
 start_rails_server(){
-  rails s
+   check_bind
+   if [[ $? == "0" ]]
+   then
+    rails s -b $ADDR
+   else
+    rails s
+   fi
   JOB="STARTING RAILS DEVELOPMENT"
   check
 }
