@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-#git test insert
-echo "argument two is $2"
-ADDR=$2
 check(){
    RV=$?
    if  [[ $RV != "0" ]]
@@ -32,18 +29,23 @@ start_solr(){
 }
 
 start_rails_server(){
-    if [[ -e $ADDR ]]
-    then
-      rails s -b $ADDR
-    else
-      rails s
-    fi
+  if [[ "$#" -eq "0" ]]
+  then
+    echo "binding address is not exist, so go to default"
+    rails s
+  elif [[ $1 ]]
+  then
+    echo "binding addre is $1"
+    rails s -b $1
+  fi
   JOB="STARTING RAILS DEVELOPMENT"
+  
   check
 }
+
 
 echo "\e[34mStarting solr and rails development"
 
 kill_solr
 start_solr
-start_rails_server
+start_rails_server $1
