@@ -35,6 +35,11 @@ body {
     text-align: center;
   }
 
+  .field{
+   
+  }
+
+
 
  }
 
@@ -94,9 +99,14 @@ footer muted credit {
 footer ul {
   float: right;
   list-style: none;
+  margin-right: 20px;
+}
+
+footer small {
+  margin-left: 20px;
 }
 
 footer ul li {
   float: left;
-  margin-left: 15px;
+  margin-left: 20px;
 }
