@@ -5,6 +5,9 @@ module ApplicationHelper
    current_user.admin?
  end
 
+ def small_button
+   puts "btn btn-default btn-xs"
+ end
 
 
  def submit_or_cancel(form,name='Cancel')

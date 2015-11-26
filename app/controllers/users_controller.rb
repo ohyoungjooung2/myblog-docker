@@ -34,7 +34,7 @@ class UsersController < ApplicationController
    def destroy
      @user=User.find(params[:id]).destroy
       if @user.destroy
-       redirect_to login_url
+       redirect_to users_path
        flash[:success] = "User deleted"
       end
    end

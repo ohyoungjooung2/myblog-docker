@@ -1,4 +1,24 @@
-<li>
-  <%= link_to users.email, users_path %>
+<%= provide(:title,"Users") %>
+     <div class="text-center" >
+       <h1>All users</h1>
+     </div>
 
-</li>
+<ul class="users" >
+  <table class="table table-bordered table-hover table-condensed">
+    <tr class="warning">
+      <th>Id</th>
+      <th>Email</th>
+      <th>Delete?</th>
+    </tr>
+
+  <% @users.each do |user| %>
+   <tr>
+   <td><%= user.id %></td>
+   <td><%= user.email %></td>
+     <% if current_user.try(:admin?) && user.admin != true  %>
+   <td><%= link_to "delete", admin_destroy_user_path(user), method: :delete, data: {confirm: 'You sure?'} %></td>
+     <% end %>
+   </tr>
+  <% end %>
+</table>
+</ul>
