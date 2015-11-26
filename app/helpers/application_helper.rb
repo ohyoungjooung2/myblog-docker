@@ -24,9 +24,14 @@ module ApplicationHelper
    end
  end
 
+ #Category name from request.original_fullpath().split("/").last method
  def c_name
     name=request.original_fullpath().split("/").last
-    return name + "."
+    if name == nil
+       "." 
+    else
+       return " on #{name}."
+    end 
  end
 
 end

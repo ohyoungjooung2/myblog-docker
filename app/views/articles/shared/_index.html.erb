@@ -4,8 +4,7 @@
 <% if @articles.count == 0 %>
 <div class="container-fluid">
   <div class="center jumbotron">
-    <div class="alert text-center"><%= vacant %> on
-        <%= c_name %>
+    <div class="alert text-center"><%= vacant %><%= c_name %>
         <%= link_to "Create article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %>
     </div>
   </div>
