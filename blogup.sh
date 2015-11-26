@@ -44,7 +44,7 @@ start_rails_server(){
 }
 
 
-echo "\e[34mStarting solr and rails development"
+echo "\e[34m Starting solr and rails development"
 
 kill_solr
 start_solr

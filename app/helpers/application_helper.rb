@@ -5,9 +5,6 @@ module ApplicationHelper
    current_user.admin?
  end
 
- def small_button
-   puts "btn btn-default btn-xs"
- end
 
 
  def submit_or_cancel(form,name='Cancel')
@@ -16,7 +13,7 @@ module ApplicationHelper
  end
 
  def vacant
-   "No articles created."
+   "No articles created"
  end
 
  def home_category_provide_title
@@ -24,8 +21,12 @@ module ApplicationHelper
       provide(:title,"Home")
    else
       provide(:title, request.original_fullpath().split("/").last)
-
    end
+ end
+
+ def c_name
+    name=request.original_fullpath().split("/").last
+    return name + "."
  end
 
 end
