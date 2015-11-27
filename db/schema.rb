@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 20151122205357) do
     t.integer  "article_id", limit: 4
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
-    t.text     "body",       limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "body",       limit: 16777215
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

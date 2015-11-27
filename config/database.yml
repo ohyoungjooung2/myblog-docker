@@ -25,8 +25,8 @@ test:
   encoding: utf8
   database: blog_test
   pool: 5
-  username: myblog
-  password: pass
+  username: root
+  password: dnflskfk
   socket: /var/run/mysqld/mysqld.sock
 
 production:
@@ -34,6 +34,6 @@ production:
   encoding: utf8
   database: blog_production
   pool: 5
-  username: myblog
-  password: pass
+  username: root
+  password: dnflskfk
   socket: /var/run/mysqld/mysqld.sock

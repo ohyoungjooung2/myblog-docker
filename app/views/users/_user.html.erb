@@ -1,14 +1,10 @@
-<%= provide(:title,"Users") %>
-     <div class="text-center" >
-       <h1>All users</h1>
-     </div>
-
-<ul class="users" >
-  <table class="table table-bordered table-hover table-condensed">
+<%= provide(:title,"Users Administration") %>
+  <div class="text-center page-header">User administration</div>
+  <table class="table table-bordered text-center table-hover table-condensed">
     <tr class="warning">
-      <th>Id</th>
-      <th>Email</th>
-      <th>Delete?</th>
+      <th class="text-center">Id</th>
+      <th class="text-center">Email</th>
+      <th class="text-center">Delete?</th>
     </tr>
 
   <% @users.each do |user| %>
@@ -17,8 +13,10 @@
    <td><%= user.email %></td>
      <% if current_user.try(:admin?) && user.admin != true  %>
    <td><%= link_to "delete", admin_destroy_user_path(user), method: :delete, data: {confirm: 'You sure?'} %></td>
+     <% else %>
+   <td>Cannot delete admin user</td>
      <% end %>
    </tr>
   <% end %>
-</table>
-</ul>
+  </table>
+  </div>

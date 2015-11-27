@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #categories = Category.create([{name: 'Ruby',slug: 'Ruby-Programming'},{name: 'Rails',slug: 'Rails-Rocks?'},{name: 'Linux',slug: 'Linux-Rocks?'},{name: 'Javascript',slug: 'Javascript?'}])
 #Admin user creation
-admin = User.create([{email: 'wnapdlf05@gmail.com',admin: true }])
+admin_email="test@test.com"
+admin = User.find_by(email: admin_email).update_attributes(admin: true)
