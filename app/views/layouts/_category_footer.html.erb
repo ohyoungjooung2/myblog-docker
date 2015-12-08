@@ -1,0 +1,19 @@
+
+<!-- Get categories dynamically -->
+
+<li class="Categories dropup">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+               <ul class="dropdown-menu">
+               <% @categories = Category.all %>
+                 <% @categories.each do |category| %>
+
+                  <li><%= link_to category.name, category_path(category) %></li>
+
+
+                  <% end %>
+                  <% if admin? %>
+                  <li><%= link_to "CategoryAdmin",Category %></li>
+                  <% end %>
+
+               </ul>
+</li>

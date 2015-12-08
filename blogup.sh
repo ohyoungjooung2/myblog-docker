@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+ipaddr=$(ifconfig | grep inet | head -3 | tail -1 | awk -F':' '{print $2}' | awk  '{print $1}')
 check(){
    RV=$?
    if  [[ $RV != "0" ]]
@@ -29,15 +30,7 @@ start_solr(){
 }
 
 start_rails_server(){
-  if [[ "$#" -eq "0" ]]
-  then
-    echo "binding address is not exist, so go to default"
-    rails s
-  elif [[ $1 ]]
-  then
-    echo "binding addre is $1"
-    rails s -b $1
-  fi
+    rails s -b $ipaddr -p 3333
   JOB="STARTING RAILS DEVELOPMENT"
   
   check
@@ -46,6 +39,4 @@ start_rails_server(){
 
 echo "\e[34m Starting solr and rails development"
 
-kill_solr
-start_solr
-start_rails_server $1
+start_rails_server 
