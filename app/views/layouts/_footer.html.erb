@@ -9,7 +9,7 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "New Article", new_article_path, :id=>'new_post_link', :method => 'get', "data-no-turbolink" => true %></li>
           <% if signed_in? %>
-           <li><%= link_to "Edit", edit_user_registration_path(current_user) %> </li>
+           <li><%= link_to "User Edit", edit_user_registration_path(current_user) %> </li>
            <li><%= link_to "Logout(#{current_user.email})", destroy_user_session_path, method: :delete %></li>
            <% if admin? %>
              <li><%= link_to "Users", users_path %></li>

@@ -14,7 +14,7 @@
 
 
   <div class="container"  id="main">
-    <%= content_tag(:p, notice, :class => 'notice') if notice.present? %>
+    <center><%= content_tag(:p, notice, :class => 'notice') if notice.present? %></center>
     <%= content_tag(:p, alert, :class => 'alert') if alert.present? %>
     <%= yield %>
   </div>
