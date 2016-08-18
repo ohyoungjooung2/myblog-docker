@@ -38,5 +38,5 @@ start_rails_server(){
 }
 
 
-echo -e "\e[1;34m Starting solr and rails development\e[0m"
+echo -e "\e[1;33m Starting solr and rails development\e[0m"
 start_rails_server
