@@ -11,11 +11,12 @@
 development:
   adapter: mysql2
   encoding: utf8
+  host: localhost
   database: blog_development
   pool: 5
   username: blog
-  password: password
-  socket: /var/run/mysqld/mysqld.sock
+  password: secret
+  #socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

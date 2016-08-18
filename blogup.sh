@@ -4,17 +4,17 @@ check(){
    RV=$?
    if  [[ $RV != "0" ]]
    then
-       echo -e "\e[31m $JOB failed please check"
+       echo -e "\e[1;31m $JOB failed please check\e[0m"
        exit $RV
    else
-       echo -e "\e[34m $JOB successful"
+       echo -e "\e[1;34m $JOB successful\e[0m"
    fi
 }
 
 
 kill_solr(){
-SOLR_PID=$(ps -ef | grep solr | awk  '{print $2}' | head -1)
-  if [[ $? == "0"  ]]
+  SOLR_PID=$(ps -ef | grep solr | grep java | awk  '{print $2}' | head -1)
+  if [[  $SOLR_PID  ]]
   then
   kill -9 $SOLR_PID
   JOB="killing solr"
@@ -30,13 +30,13 @@ start_solr(){
 }
 
 start_rails_server(){
+    JOB="STARTING RAILS DEVELOPMENT"
+    kill_solr
+    start_solr
     rails s -b $ipaddr -p 3333
-  JOB="STARTING RAILS DEVELOPMENT"
-  
-  check
+    #check
 }
 
 
-echo "\e[34m Starting solr and rails development"
-
-start_rails_server 
+echo -e "\e[1;34m Starting solr and rails development\e[0m"
+start_rails_server
