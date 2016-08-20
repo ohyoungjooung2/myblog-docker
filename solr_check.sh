@@ -12,13 +12,13 @@ check(){
 }
 
 
-
 kill_solr(){
   set -x
   SOLR_PID=$(ps -ef | grep solr | grep java | awk  '{print $2}' | head -1)
   if [[  $SOLR_PID  ]]
   then
   kill -9 $SOLR_PID
+  sleep 9
   kill_solr
   JOB="killing solr"
   check
@@ -30,42 +30,17 @@ kill_solr(){
 start_solr(){
   bundle exec rake sunspot:solr:start RAILS_ENV="development"
   JOB="Staring solr gem search engine"
-   
+  check
 }
 
 start_rails_server(){
     JOB="STARTING RAILS DEVELOPMENT"
     kill_solr
     start_solr
-
-     sec=0
-     echo "Solr port 8982 is still opening,wait please "
-     tput sc
-     while true 
-     do
-       #netstat -an | grep 8982 2>&1 /dev/null
-       c=$(netstat -an | grep 8982)
-       if [[ ! $c ]]
-       then
-         let sec++
-         tput rc
-         tput ed
-         echo -n $sec
-       elif [[ $c ]]
-       then
-         echo "Solr opend port 8982!"
-         echo "Now start rails!"
-         rails s -b $ipaddr -p 3333
-         exit 0
-       else
-         echo "something out?????();"
-       fi
-     done
-         
+    rails s -b $ipaddr -p 3333
     #check
 }
 
 
 echo -e "\e[1;33m Starting solr and rails development\e[0m"
-
 start_rails_server

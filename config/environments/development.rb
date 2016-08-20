@@ -7,7 +7,8 @@ Blog::Application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  #config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -17,7 +18,7 @@ Blog::Application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   #devise
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3001 }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3333 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
