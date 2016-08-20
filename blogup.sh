@@ -7,21 +7,25 @@ check(){
        echo -e "\e[1;31m $JOB failed please check\e[0m"
        exit $RV
    else
-       echo -e "\e[1;34m $JOB successful\e[0m"
+       echo -e "\e[1;34m $JOB is(was) successful\e[0m"
    fi
 }
 
 
 kill_solr(){
+  set -x
   SOLR_PID=$(ps -ef | grep solr | grep java | awk  '{print $2}' | head -1)
   if [[  $SOLR_PID  ]]
   then
   kill -9 $SOLR_PID
+  sleep 9
+  kill_solr
   JOB="killing solr"
   check
   else
    echo "Solr is not running"
   fi
+  set +x
 } 
 start_solr(){
   rake sunspot:solr:start
