@@ -1,0 +1,20 @@
+version: '3'
+services:
+   db:
+     image: mysql:5.6.40
+     environment:
+        - MYSQL_ROOT_PASSWORD=secret 
+        - MYSQL_ROOT_HOST=%
+     ports:
+        - "33333:3306"
+   web:
+     build: .
+     command: bash b.sh 
+     volumes:
+        - .:/myapp
+     ports:
+        - "5555:3333"
+        - "8900:8982"
+     depends_on:
+        - db
+   
