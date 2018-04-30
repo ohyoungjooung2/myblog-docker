@@ -38,6 +38,7 @@
 *.tim
 *.pid
 *.gen
+*.lock
 
 #Ignore solr directory
 /solr/pids/**
