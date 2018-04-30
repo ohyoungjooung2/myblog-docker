@@ -9,12 +9,25 @@ services:
         - "33333:3306"
    web:
      build: .
-     command: bash b.sh 
+     command: bash b.sh
      volumes:
         - .:/myapp
      ports:
         - "5555:3333"
-        - "8900:8982"
      depends_on:
         - db
-   
+
+   solr:
+     image: solr
+     volumes:
+        - data:/opt/solr/server/solr/mycores 
+     entrypoint:
+        - docker-entrypoint.sh
+        - solr-precreate
+        - mycore
+     ports:
+        - "8999:8983"
+     depends_on:
+        - web
+volumes:
+   data:

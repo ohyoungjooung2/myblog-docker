@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+BUNDLE="/home/oyj/rails_root/myblog/bin/bundle"
 ipaddr=$(ifconfig | grep inet | head -3 | tail -1 | awk -F':' '{print $2}' | awk  '{print $1}')
 check(){
    RV=$?
@@ -14,33 +15,27 @@ check(){
 
 kill_solr(){
   set -x
-  SOLR_PID=$(ps -ef | grep "port=8982" | grep java | awk  '{print $2}' | head -1)
-  if [[  $SOLR_PID  ]]
-  then
-  kill -9 $SOLR_PID
-  sleep 9
-  kill_solr
+     $BUNDLE exec rake sunspot:solr:stop RAILS_ENV="production"
   JOB="killing solr"
   check
-  else
-   echo "Solr is not running"
-  fi
   set +x
 } 
 start_solr(){
-  bundle exec rake sunspot:solr:start RAILS_ENV="development"
+  #bundle exec rake sunspot:solr:start RAILS_ENV="production"
+  cd /home/oyj/rails_root/myblog;
+  $BUNDLE exec rake sunspot:solr:start RAILS_ENV="production"
   JOB="Staring solr gem search engine"
   check
 }
 
 start_rails_server(){
-    JOB="STARTING RAILS DEVELOPMENT"
+    JOB="STARTING RAILS production"
     kill_solr
     start_solr
-    rails s -b $ipaddr -p 3333
-    #check
+    #rails s -b $ipaddr -p 3333
+    check
 }
 
 
-echo -e "\e[1;33m Starting solr and rails development\e[0m"
+echo -e "\e[1;33m Starting solr and rails production\e[0m"
 start_rails_server

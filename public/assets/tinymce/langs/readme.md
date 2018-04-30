@@ -1,3 +1,1 @@
-This is where language files should be placed.
-
-Please DO NOT translate these directly use this service: https://www.transifex.com/projects/p/tinymce/
+readme-f3fba5c5109b9c625a12a18f26df83f4.md

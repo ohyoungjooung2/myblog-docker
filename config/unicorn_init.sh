@@ -12,10 +12,11 @@ set -e
 
 # Feel free to change any of the following variables for your env.
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/home/whatsup/ror/blog
+APP_ROOT=/home/oyj/rails_root/myblog
 PID=$APP_ROOT/tmp/pids/unicorn.pid
+#BUNDLE="/home/oyj/.rubies/ruby-2.3.4/bin/bundle"
 CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-AS_USER=whatsup
+AS_USER=oyj
 set -u
 
 OLD_PIN="$PID.oldbin"

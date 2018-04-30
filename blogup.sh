@@ -55,7 +55,7 @@ start_rails_server(){
        then
          echo "Solr opend port 8982!"
          echo "Now start rails!"
-         rails s -b $ipaddr -p 3333
+         rails s -b 0.0.0.0 -p 3333
          exit 0
        else
          echo "something out?????();"

@@ -1,4 +1,4 @@
-root = "/home/whatsup/ror/blog"
+root = "/home/oyj/rails_root/myblog"
 working_directory root
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn_err.log"

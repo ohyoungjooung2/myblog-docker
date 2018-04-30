@@ -11,10 +11,11 @@
 development:
   adapter: mysql2
   encoding: utf8
-  host: localhost
+  #host: localhost
+  host: db
   database: blog_development
   pool: 5
-  username: blog
+  username: root
   password: secret
   #socket: /var/run/mysqld/mysqld.sock
 
@@ -32,9 +33,10 @@ development:
 
 production:
   adapter: mysql2
+  host: localhost
   encoding: utf8
-  database: blog_production
+  database: myblog_production
   pool: 5
-  username: blog
-  password: password
+  username: myblog
+  password: dnflskfk
   socket: /var/run/mysqld/mysqld.sock

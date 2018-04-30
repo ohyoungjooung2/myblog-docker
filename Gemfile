@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.10'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2','~>0.3.13'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -51,7 +51,7 @@ gem 'devise'
 # sunspot search 
 gem 'sunspot_rails'
 
-gem 'sunspot_solr', group: :production
+gem 'sunspot_solr'
 
 #unicorn
 gem 'unicorn'
@@ -63,6 +63,7 @@ gem 'rvm-capistrano', group: :development
 #bootstrap-sass
 gem 'bootstrap-sass', '~> 3.1.1'
 
+gem 'json'
 #ace editor
 #gem 'jquery-ace-rails'
 
