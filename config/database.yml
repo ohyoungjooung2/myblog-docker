@@ -33,10 +33,10 @@ development:
 
 production:
   adapter: mysql2
-  host: localhost
+  host: db
   encoding: utf8
   database: myblog_production
   pool: 5
-  username: myblog
-  password: dnflskfk
+  username: root
+  password: secret
   socket: /var/run/mysqld/mysqld.sock

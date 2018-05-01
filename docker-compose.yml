@@ -7,13 +7,14 @@ services:
         - MYSQL_ROOT_HOST=%
      ports:
         - "33333:3306"
+
    web:
      build: .
      command: bash b.sh
      volumes:
         - .:/myapp
      ports:
-        - "5555:3333"
+        - "9999:80"
      depends_on:
         - db
 

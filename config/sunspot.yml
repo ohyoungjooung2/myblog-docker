@@ -1,11 +1,12 @@
 production:
   solr:
-    hostname: localhost
+    hostname: solr
     port: 8983
     log_level: WARNING
-    path: /solr/production
+    path: /solr/mycore
     # read_timeout: 2
     # open_timeout: 0.5
+    # docker stop start test? modified?
 
 development:
   solr:
