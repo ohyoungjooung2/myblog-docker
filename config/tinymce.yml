@@ -51,5 +51,5 @@ templates : [
 autosave_interval: "5s"
 paste_data_images: true
 fontsize_formats: "5pt 6pt 7pt 8pt 10pt 12pt 14pt 18pt 24pt 36pt"
-skin : 'charcoal'
+skin : 'lightgray'
 toolbar: "emoticons | template | table | sizeselect | bold italic | fontselect |  fontsizeselect | tablecontrols | fullscreen |  link | image | emotions"

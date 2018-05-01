@@ -1,1 +1,128 @@
 README TEST
+*Test env is ubuntu16.04(xenial)
+1. docker environment install(docker,docker-compose)
+2. Execute docker-compose up
+3. execute db.sh to create db,tables and admin user.
+4. Using categories admin, create category that you want.
+
+
+
+1. I use vagrant to up ubuntu16 xenial version.
+vagrant@u16vag:~$ wget https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
+--2018-05-02 00:21:30--  https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.76.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.76.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 618 [text/plain]
+Saving to: 'docker_ubuntu_install.sh'
+
+docker_ubuntu_install.sh               100%[============================================================================>]     618  --.-KB/s    in 0s      
+
+2018-05-02 00:21:31 (83.8 MB/s) - 'docker_ubuntu_install.sh' saved [618/618]
+
+vagrant@u16vag:~$ sudo bash docker_ubuntu_install.sh 
+he following packages were automatically installed and are no longer required:
+  linux-headers-4.4.0-116 linux-headers-4.4.0-116-generic linux-image-4.4.0-116-generic
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  aufs-tools cgroupfs-mount libltdl7
+Suggested packages:
+  mountall
+The following NEW packages will be installed:
+  aufs-tools cgroupfs-mount docker-ce libltdl7
+0 upgraded, 4 newly installed, 0 to remove and 4 not upgraded.
+Need to get 19.4 MB of archives.
+After this operation, 89.4 MB of additional disk space will be used.
+Do you want to continue? [Y/n] 
+Y
+
+vagrant@u16vag:~$ docker -v
+Docker version 17.03.0-ce, build 3a232c8
+
+Now we absolutely want to run docker non-root user. In this test case, vagrant user.
+vagrant@u16vag:~$ cat /etc/group | grep docker
+docker:x:999:
+vagrant@u16vag:~$ sudo usermod -aG docker $USER
+vagrant@u16vag:~$ echo $USER
+vagrant
+vagrant@u16vag:~$ cat /etc/group | grep docker
+docker:x:999:vagrant
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Because I am going to run docker user(not root), I need to reboot virtualbox(vagrant) machine.
+If you are not using virtualbox, just logout relogin would be better choice.(https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
+
+
+oyj@Workstation-oyj-X555QG ~/vagrant_ansi$vagrant reload u16vag
+==> u16vag: Attempting graceful shutdown of VM...
+==> u16vag: Checking if box 'ubuntu/xenial64' is up to date...
+==> u16vag: A newer version of the box 'ubuntu/xenial64' for provider 'virtualbox' is
+==> u16vag: available! You currently have version '20180323.0.0'. The latest is version
+==> u16vag: '20180427.0.0'. Run `vagrant box update` to update.
+==> u16vag: Clearing any previously set forwarded ports...
+
+==> u16vag: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> u16vag: flag to force provisioning. Provisioners marked to run always will still run.
+oyj@Workstation-oyj-X555QG ~/vagrant_ansi$vagrant ssh u16vag
+Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-121-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+9 packages can be updated.
+0 updates are security updates.
+
+Let's check!
+
+vagrant@u16vag:~$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+vagrant@u16vag:~$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+
+reating network "myblog-docker_default" with the default driver
+Creating volume "myblog-docker_data" with default driver
+Pulling db (mysql:5.6.40)...
+5.6.40: Pulling from library/mysql
+
+
+
+Let's install docker-compose
+
+vagrant@u16vag:~$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+
+vagrant@u16vag:~$ sudo chmod +x /usr/local/bin/docker-compose
+vagrant@u16vag:~$ docker-compose -v
+docker-compose version 1.21.0, build 5920eb0
+
+
+**************     VERY OK  !!! *************************************
+
+
+It is time to git clone myblog-docker
+vagrant@u16vag:~$ git clone https://github.com/ohyoungjooung2/myblog-docker
+loning into 'myblog-docker'...
+remote: Counting objects: 2101, done.
+remote: Compressing objects: 100% (889/889), done.
+remote: Total 2101 (delta 818), reused 2094 (delta 811), pack-reused 0
+Receiving objects: 100% (2101/2101), 3.56 MiB | 2.79 MiB/s, done.
+Resolving deltas: 100% (818/818), done.
+Checking connectivity... done.
+
+
+2. Execute docker-compose up
+
+Just run docker-compose up would be OK.
+
+vagrant@u16vag:~/myblog-docker$ docker-compose up
+Creating network "myblog-docker_default" with the default driver
+Creating volume "myblog-docker_data" with default driver
+Pulling db (mysql:5.6.40)...
+5.6.40: Pulling from library/mysql
+
+

@@ -39,7 +39,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'friendly_id','~> 5.1.0'
 
 #tinymce
-gem 'tinymce-rails'
+gem 'tinymce-rails','4.1.6'
 
 #kaminari
 gem 'kaminari'
