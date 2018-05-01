@@ -1,3 +1,0 @@
-*Intro: This is very simple blog by Ruby on rails(4.2.10). Designed with bootstrap3(http:///getboostrap.com)
-*This repo is for docker env. Please refer to docker.com to install docker for your oses.
-
