@@ -3,12 +3,11 @@ README TEST
 1. docker environment install(docker,docker-compose)
 2. Execute docker-compose up
 3. execute db.sh to create db,tables and admin user.
-4. Using categories admin, create category that you want.
 
 
 
-1. I use vagrant to up ubuntu16 xenial version.
-vagrant@u16vag:~$ wget https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
+1. I use oyj to up ubuntu16 xenial version.
+oyj@Workstation-oyj-X555QG:~$ wget https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
 --2018-05-02 00:21:30--  https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.76.133
 Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.76.133|:443... connected.
@@ -20,7 +19,7 @@ docker_ubuntu_install.sh               100%[====================================
 
 2018-05-02 00:21:31 (83.8 MB/s) - 'docker_ubuntu_install.sh' saved [618/618]
 
-vagrant@u16vag:~$ sudo bash docker_ubuntu_install.sh 
+oyj@Workstation-oyj-X555QG:~$ sudo bash docker_ubuntu_install.sh 
 he following packages were automatically installed and are no longer required:
   linux-headers-4.4.0-116 linux-headers-4.4.0-116-generic linux-image-4.4.0-116-generic
 Use 'sudo apt autoremove' to remove them.
@@ -36,51 +35,30 @@ After this operation, 89.4 MB of additional disk space will be used.
 Do you want to continue? [Y/n] 
 Y
 
-vagrant@u16vag:~$ docker -v
+oyj@Workstation-oyj-X555QG:~$ docker -v
 Docker version 17.03.0-ce, build 3a232c8
 
-Now we absolutely want to run docker non-root user. In this test case, vagrant user.
-vagrant@u16vag:~$ cat /etc/group | grep docker
+Now we absolutely want to run docker non-root user. In this test case, oyj user.
+oyj@Workstation-oyj-X555QG:~$ cat /etc/group | grep docker
 docker:x:999:
-vagrant@u16vag:~$ sudo usermod -aG docker $USER
-vagrant@u16vag:~$ echo $USER
-vagrant
-vagrant@u16vag:~$ cat /etc/group | grep docker
-docker:x:999:vagrant
+oyj@Workstation-oyj-X555QG:~$ sudo usermod -aG docker $USER
+oyj@Workstation-oyj-X555QG:~$ echo $USER
+oyj
+oyj@Workstation-oyj-X555QG:~$ cat /etc/group | grep docker
+docker:x:999:oyj
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Because I am going to run docker user(not root), I need to reboot virtualbox(vagrant) machine.
 If you are not using virtualbox, just logout relogin would be better choice.(https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user)
 
 
-oyj@Workstation-oyj-X555QG ~/vagrant_ansi$vagrant reload u16vag
-==> u16vag: Attempting graceful shutdown of VM...
-==> u16vag: Checking if box 'ubuntu/xenial64' is up to date...
-==> u16vag: A newer version of the box 'ubuntu/xenial64' for provider 'virtualbox' is
-==> u16vag: available! You currently have version '20180323.0.0'. The latest is version
-==> u16vag: '20180427.0.0'. Run `vagrant box update` to update.
-==> u16vag: Clearing any previously set forwarded ports...
 
-==> u16vag: Machine already provisioned. Run `vagrant provision` or use the `--provision`
-==> u16vag: flag to force provisioning. Provisioners marked to run always will still run.
-oyj@Workstation-oyj-X555QG ~/vagrant_ansi$vagrant ssh u16vag
-Welcome to Ubuntu 16.04.4 LTS (GNU/Linux 4.4.0-121-generic x86_64)
 
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
 
-  Get cloud support with Ubuntu Advantage Cloud Guest:
-    http://www.ubuntu.com/business/services/cloud
 
-9 packages can be updated.
-0 updates are security updates.
 
-Let's check!
-
-vagrant@u16vag:~$ docker ps
+oyj@Workstation-oyj-X555QG:~$ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
-vagrant@u16vag:~$ docker images
+oyj@Workstation-oyj-X555QG:~$ docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 
 reating network "myblog-docker_default" with the default driver
@@ -92,12 +70,12 @@ Pulling db (mysql:5.6.40)...
 
 Let's install docker-compose
 
-vagrant@u16vag:~$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+oyj@Workstation-oyj-X555QG:~$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 
-vagrant@u16vag:~$ sudo chmod +x /usr/local/bin/docker-compose
-vagrant@u16vag:~$ docker-compose -v
+oyj@Workstation-oyj-X555QG:~$ sudo chmod +x /usr/local/bin/docker-compose
+oyj@Workstation-oyj-X555QG:~$ docker-compose -v
 docker-compose version 1.21.0, build 5920eb0
 
 
@@ -105,7 +83,7 @@ docker-compose version 1.21.0, build 5920eb0
 
 
 It is time to git clone myblog-docker
-vagrant@u16vag:~$ git clone https://github.com/ohyoungjooung2/myblog-docker
+oyj@Workstation-oyj-X555QG:~$ git clone https://github.com/ohyoungjooung2/myblog-docker
 loning into 'myblog-docker'...
 remote: Counting objects: 2101, done.
 remote: Compressing objects: 100% (889/889), done.
@@ -119,10 +97,150 @@ Checking connectivity... done.
 
 Just run docker-compose up would be OK.
 
-vagrant@u16vag:~/myblog-docker$ docker-compose up
+oyj@Workstation-oyj-X555QG:~/myblog-docker$ docker-compose up
 Creating network "myblog-docker_default" with the default driver
 Creating volume "myblog-docker_data" with default driver
 Pulling db (mysql:5.6.40)...
 5.6.40: Pulling from library/mysql
+.......
+solr_1  | 2018-05-01 19:43:47.933 INFO  (coreLoadExecutor-6-thread-1) [   x:mycore] o.a.s.u.UpdateLog Could not find max version in index or recent updates, using new clock 1599292129078673408
+
+3. execute db.sh to create db,tables and admin user.
+From another terminal.
+oyj@Workstation-oyj-X555QG ~/myblog-docker$cat db.sh 
+#!/usr/bin/env bash
+docker-compose run web rake db:create RAILS_ENV="production"
+docker-compose run web rake db:migrate RAILS_ENV="production"
+docker-compose run web rake db:seed RAILS_ENV="production"
+docker-compose run web rake assets:precompile RAILS_ENV="production"
 
 
+oyj@Workstation-oyj-X555QG ~/myblog-docker$bash db.sh 
+Starting myblog-docker_db_1 ... done
+Starting myblog-docker_db_1 ... done
+== 20150526202433 CreateArticles: migrating ===================================
+-- create_table(:articles)
+   -> 0.0673s
+== 20150526202433 CreateArticles: migrated (0.0675s) ==========================
+
+== 20150526205130 AddExcerptAndLocationToArticles: migrating ==================
+-- add_column(:articles, :excerpt, :string)
+   -> 0.1040s
+-- add_column(:articles, :location, :string)
+   -> 0.0982s
+== 20150526205130 AddExcerptAndLocationToArticles: migrated (0.2025s) =========
+
+== 20150527111324 CreateUsers: migrating ======================================
+-- create_table(:users)
+   -> 0.0604s
+== 20150527111324 CreateUsers: migrated (0.0606s) =============================
+
+== 20150527111704 CreateProfiles: migrating ===================================
+-- create_table(:profiles)
+   -> 0.0648s
+== 20150527111704 CreateProfiles: migrated (0.0649s) ==========================
+
+== 20150527141600 AddUserIdToArticles: migrating ==============================
+-- add_column(:articles, :user_id, :integer)
+   -> 0.0992s
+== 20150527141600 AddUserIdToArticles: migrated (0.0993s) =====================
+
+== 20150527145900 CreateCategories: migrating =================================
+-- create_table(:categories)
+   -> 0.0650s
+== 20150527145900 CreateCategories: migrated (0.0652s) ========================
+
+== 20150527150100 CreateArticlesCategories: migrating =========================
+-- create_table(:articles_categories, {:id=>false})
+   -> 0.0609s
+== 20150527150100 CreateArticlesCategories: migrated (0.0611s) ================
+
+== 20150527154609 CreateComments: migrating ===================================
+-- create_table(:comments)
+   -> 0.0762s
+== 20150527154609 CreateComments: migrated (0.0764s) ==========================
+
+== 20150528112635 RenamePasswordToHashedPassword: migrating ===================
+-- rename_column(:users, :password, :hashed_password)
+   -> 0.0197s
+== 20150528112635 RenamePasswordToHashedPassword: migrated (0.0200s) ==========
+
+== 20150529015019 AddSlugToArticles: migrating ================================
+-- add_column(:articles, :slug, :string)
+   -> 0.0969s
+== 20150529015019 AddSlugToArticles: migrated (0.0970s) =======================
+
+== 20150529230235 CreateFriendlyIdSlugs: migrating ============================
+-- create_table(:friendly_id_slugs)
+   -> 0.0649s
+-- add_index(:friendly_id_slugs, :sluggable_id)
+   -> 0.0573s
+-- add_index(:friendly_id_slugs, [:slug, :sluggable_type])
+   -> 0.0595s
+-- add_index(:friendly_id_slugs, [:slug, :sluggable_type, :scope], {:unique=>true})
+   -> 0.0554s
+-- add_index(:friendly_id_slugs, :sluggable_type)
+   -> 0.0569s
+== 20150529230235 CreateFriendlyIdSlugs: migrated (0.2947s) ===================
+
+== 20150613085323 AddDeviseToUsers: migrating =================================
+-- change_table(:users)
+   -> 1.2396s
+-- add_index(:users, :email, {:unique=>true})
+   -> 0.0158s
+-- add_index(:users, :reset_password_token, {:unique=>true})
+   -> 0.0139s
+== 20150613085323 AddDeviseToUsers: migrated (1.2699s) ========================
+
+== 20150702182219 AddSlugToCategories: migrating ==============================
+-- add_column(:categories, :slug, :string)
+   -> 0.0225s
+-- add_index(:categories, :slug, {:unique=>true})
+   -> 0.0143s
+== 20150702182219 AddSlugToCategories: migrated (0.0372s) =====================
+
+== 20150706234330 AddAdminToUsers: migrating ==================================
+-- add_column(:users, :admin, :boolean, {:default=>false})
+   -> 0.0285s
+== 20150706234330 AddAdminToUsers: migrated (0.0287s) =========================
+
+== 20151122205357 AddCategoryIdToArticles: migrating ==========================
+-- add_column(:articles, :category_id, :integer)
+   -> 0.0244s
+== 20151122205357 AddCategoryIdToArticles: migrated (0.0246s) =================
+
+Starting myblog-docker_db_1 ... done
+Starting myblog-docker_db_1 ... done
+I, [2018-05-01T19:50:47.020801 #1]  INFO -- : Writing /myapp/public/assets/ruby-d4a0240041a1c62836b41ab2a0a2dc48.jpeg
+I, [2018-05-01T19:51:01.110202 #1]  INFO -- : Writing /myapp/public/assets/application-a3b19e5a543ca761346621fa29ad55db.js
+I, [2018-05-01T19:51:01.503889 #1]  INFO -- : Writing /myapp/public/assets/fadeout-7cf7276dbbb9c5e21b594ff02547ad0d.js
+I, [2018-05-01T19:51:05.251342 #1]  INFO -- : Writing /myapp/public/assets/application-21a3a747a8ad4b881cff3424ec723b89.css
+I, [2018-05-01T19:51:05.256682 #1]  INFO -- : Writing /myapp/public/assets/bootstrap/glyphicons-halflings-regular-250410f588d3e925b8616978b55a7739.eot
+I, [2018-05-01T19:51:05.257289 #1]  INFO -- : Writing /myapp/public/assets/bootstrap/glyphicons-halflings-regular-dc36f57946f79ab0a28b924db5af539d.svg
+I, [2018-05-01T19:51:05.257944 #1]  INFO -- : Writing /myapp/public/assets/bootstrap/glyphicons-halflings-regular-25e3083ad99d1d7179e54d343c378018.ttf
+I, [2018-05-01T19:51:05.258504 #1]  INFO -- : Writing /myapp/public/assets/bootstrap/glyphicons-halflings-regular-9c07af7918beddae7783f7b6850f0436.woff
+I, [2018-05-01T19:51:13.827392 #1]  INFO -- : Writing /myapp/public/assets/tinymce-3e9b560ceaba3dbfb4c70f796b25ea39.js
+oyj@Workstation-oyj-X555QG ~/myblog-docker$
+
+
+oyj@Workstation-oyj-X555QG ~/myblog-docker$docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                     NAMES
+187a3162e310        solr                "docker-entrypoint.s…"   21 seconds ago      Up 20 seconds       0.0.0.0:8999->8983/tcp    myblog-docker_solr_1
+617af02fa201        myblog-docker_web   "bash b.sh"              21 seconds ago      Up 20 seconds       0.0.0.0:9999->80/tcp      myblog-docker_web_1
+e135a2281722        mysql:5.6.40        "docker-entrypoint.s…"   22 seconds ago      Up 21 seconds       0.0.0.0:33333->3306/tcp   myblog-docker_db_1
+
+oyj@Workstation-oyj-X555QG ~/myblog-docker$sudo rm -f tmp/pids/*
+oyj@Workstation-oyj-X555QG ~/myblog-docker$sudo chown -R oyj.oyj *
+oyj@Workstation-oyj-X555QG ~/myblog-docker$docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+oyj@Workstation-oyj-X555QG ~/myblog-docker$docker-compose start
+Starting db   ... done
+Starting web  ... done
+Starting solr ... done
+oyj@Workstation-oyj-X555QG ~/myblog-docker$
+
+
+Now you can login user admin@localhost and password is in db/seeds.rb.
+You can create categories and write articles.
+
+Thanks for your reading.
