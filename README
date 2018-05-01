@@ -239,6 +239,11 @@ Starting web  ... done
 Starting solr ... done
 oyj@Workstation-oyj-X555QG ~/myblog-docker$
 
+Now you can login with browsers such as firefox, or chrome.
+http://localhost:9999
+
+If you want to change to 80 port just change docker-compose.yml's web part.
+
 
 Now you can login user admin@localhost and password is in db/seeds.rb.
 You can create categories and write articles.
