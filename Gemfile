@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+#gem 'rails', '4.2.10'
+#For test turbon link work
 gem 'rails', '4.2.10'
 
 # Use mysql as the database for Active Record
@@ -57,8 +59,8 @@ gem 'sunspot_solr'
 gem 'unicorn'
 
 # 
-gem 'capistrano', '~> 3.4.0'
-gem 'rvm-capistrano', group: :development
+#gem 'capistrano', '~> 3.4.0'
+#gem 'rvm-capistrano', group: :development
 
 #bootstrap-sass
 gem 'bootstrap-sass', '~> 3.1.1'

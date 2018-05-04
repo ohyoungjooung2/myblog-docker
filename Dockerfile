@@ -1,4 +1,4 @@
-FROM ruby:2.2
+FROM ruby:2.0
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs libmysqlclient-dev nginx
 RUN gem install bundler
 RUN mkdir /myapp
@@ -11,6 +11,7 @@ RUN rake assets:precompile RAILS_ENV="production"
 
 #Nginx
 COPY ./nginx.conf /etc/nginx/sites-enabled/default
+COPY ./nginx-root.conf /etc/nginx/nginx.conf
        
 #EXPOSE 3333
 #EXPOSE 8982
