@@ -6,7 +6,7 @@ WORKDIR /myapp
 COPY . /myapp
 RUN bundle install
 #RUN rake assets:precompile RAILS_ENV="development"
-RUN rake assets:precompile RAILS_ENV="production"
+RUN bundle exec rake assets:precompile RAILS_ENV="production"
 #RUN rake db:setup RAILS_ENV="development"
 
 #Nginx
