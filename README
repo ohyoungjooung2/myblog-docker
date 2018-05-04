@@ -6,7 +6,7 @@ README TEST
 
 
 
-1. I use oyj to up ubuntu16 xenial version.
+1. ubuntu16 xenial version.
 oyj@Workstation-oyj-X555QG:~$ wget https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
 --2018-05-02 00:21:30--  https://raw.githubusercontent.com/ohyoungjooung2/my-little-shellpro/master/docker_ubuntu_install.sh
 Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.76.133
