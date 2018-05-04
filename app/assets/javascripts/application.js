@@ -17,4 +17,5 @@
 //= require tinymce-jquery
 //= require bootstrap
 //= require rrrr
+//= require turbolinks
 //= require_tree .
